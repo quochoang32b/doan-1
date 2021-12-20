@@ -1,0 +1,21 @@
+{% extends 'daihuu/base.html' %}
+{% block content %}
+    <div class="d-flex flex-column bd-highlight mb-3">
+                {% for post in object_list %}
+                    <a href="{% url 'PostDetail' post.pk %}" style="text-decoration: white" class="link-dark">
+                    <div class="card p-2 bd-highlight" >
+                          <img class="card-img-top" src="{{ post.hinh_dai_dien.url }}" height="500px" alt="Card image cap">
+                          <div class="card-body ">
+                              <div class="d-flex flex-row bd-highlight mb-3">
+                            <h4 class="card-title me-auto" style="font-weight: bold">{{ post.tieu_de }}</h4>
+
+                              <p class="ms-auto">Tác giả: {{ post.tac_gia }}</p>
+                              </div>
+                              <p class="d-flex justify-content-end"> {{post.ngay_dang}}</p>
+                            <p class="card-text text-truncate">{{post.noi_dung}}</p>
+                          </div>
+                    </div>
+                    </a>
+                {% endfor %}
+            </div>
+{% endblock %}

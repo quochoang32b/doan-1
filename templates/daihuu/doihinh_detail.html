@@ -1,0 +1,20 @@
+{% extends 'daihuu/base.html' %}
+{% block content %}
+    <div class="d-flex bd-highlight">
+    <div class="p-2 flex-fill bd-highlight">
+          <img class="card-img-top d-flex justify-content-start" src="{{ cauthu.hinh_dai_dien.url }}">
+    </div>
+        <div class="p-2 flex-fill bd-highlight align-self-center">
+          <ul class="list-group list-group">
+            <li class="list-group-item">Họ tên: {{cauthu.ho}} {{ cauthu.ten }}</li>
+            <li class="list-group-item">Năm sinh: {{ cauthu.nam_sinh.year }}</li>
+            <li class="list-group-item">Quê quán: {{ cauthu.que_quan }}</li>
+              <li class="list-group-item">Chiều cao: {{ cauthu.chieu_cao}}</li>
+              <li class="list-group-item">Cân nặng: {{ cauthu.can_nang }}</li>
+              <li class="list-group-item">Số áo: {{ cauthu.so_ao}}</li>
+              <li class="list-group-item">Vị trí: {{ cauthu.vi_tri }}</li>
+              <li class="list-group-item">Tình trạng: {{ cauthu.tinh_trang }}</li>
+          </ul>
+        </div>
+    </div>
+{% endblock %}

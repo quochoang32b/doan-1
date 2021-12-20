@@ -1,0 +1,1 @@
+web: gunicorn doan_1.wsgi --log-file -

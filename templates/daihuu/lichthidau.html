@@ -1,0 +1,14 @@
+{% extends 'daihuu/base.html' %}
+{% block content %}
+    {% for match in some_match %}
+                    <div class="p-2 flex-fill bd-highlight align-self-center">
+                          <ul class="list-group list-group" style="text-align: center; border: solid black">
+                              <li class="list-group-item" style="font-weight: bolder; font-size: larger">{{ match.giai_dau}}</li>
+                              <li class="list-group-item"><img src="{{ds.pop}}" width="100px" height="100px"> {{ match.doi_bong.filter.last}} <strong>vs</strong> {{ match.doi_bong.filter.first}} <img src="{{ds.pop}}" width="100px" height="100px"></li>
+                              <li class="list-group-item">Tỉ số: {{ match.diem_so }}</li>
+                              <li class="list-group-item">Thời gian: {{ match.thoi_gian.date }}</li>
+                              <li class="list-group-item">Địa điểm: {{ match.dia_diem }}</li>
+                          </ul>
+                    </div>
+                {% endfor %}
+{% endblock %}

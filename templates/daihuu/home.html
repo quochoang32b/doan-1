@@ -1,0 +1,108 @@
+{% extends 'daihuu/base.html' %}
+{% load static %}
+    {% block slider %}
+        <style>
+   <!--     .carousel .carousel-item {
+        height: 700px;}
+
+    .carousel-item img {
+    position: absolute;
+    object-fit: fill;
+    top: 0;
+    left: 0;
+    min-height: 500px;}
+    -->
+   .carousel .carousel-item {
+  height: 500px;
+   }
+
+    .carousel-item img {
+        position: absolute;
+        object-fit:cover;
+        top: 0;
+        left: 0;
+        min-height: 500px;
+    }
+        a{
+            text-decoration: none;
+            font-weight: bolder;
+            color: black;
+        }
+        </style>
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="1500" style="width: content-box">
+      <img src="{% static 'images/show_1.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item" data-bs-interval="1500">
+      <img src="{% static 'images/show_2.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+--->
+{% endblock %}
+                {% block content %}
+                    <h2 style="color: white; padding-bottom: 50px;text-align:center"><span class="badge bg-dark">Bài viết tin tức, hoạt động xã hội của đội bóng</span></h2>
+            <div class="d-flex flex-wrap" style="padding-bottom: 50px">
+                {% for post in some_post %}
+                    <a href="{% url 'PostDetail' post.pk %}" style="text-decoration: white" class="link-dark">
+                    <div class="card" style="width: 20rem; max-width: content-box">
+                          <img class="card-img-top" src="{{ post.hinh_dai_dien.url }}" width="500px" height="200px alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title" style="font-weight: bolder">{{ post.tieu_de }}</h5>
+                            <p class="card-text text-truncate" style="font-weight: normal">{{ post.noi_dung}}</p>
+                          </div>
+                    </div>
+                    </a>
+                {% endfor %}
+            </div>
+                    <a class="d-flex justify-content-end" href="{% url 'TinTuc' %}">Xem tất cả bài viết</a>
+                       <h2 style="color: white; padding-bottom: 50px;text-align:center"><span class="badge bg-dark">Các trận bóng</span></h2>
+                    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                          <div class="carousel-inner">
+                              {% for match in some_match %}
+                              <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}" data-bs-interval="1500" style="height: 150px">
+                              <div class="carousel-caption d-none d-md-block" style="font-weight: bold">
+                                  {{ match.giai_dau}}<br/>
+                                  {{ match.doi_bong.filter.last}} vs {{ match.doi_bong.filter.first}}<br/>
+                                  {{ match.diem_so }}
+                              </div>
+                            </div>
+                              {% endfor %}
+                          </div>
+                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                    </div>
+                 <div class="d-flex flex-wrap" style="padding-bottom: 50px">
+                    {% for match in some_match %}
+                        {% if forloop.counter == 1 or forloop.counter == 2 %}
+                    <div class="p-2 flex-fill bd-highlight align-self-center">
+                          <ul class="list-group list-group" style="text-align: center; border: solid black">
+                              <li class="list-group-item" style="font-weight: bolder; font-size: larger">{{ match.giai_dau}}</li>
+                              <li class="list-group-item"><img src="{{ds.pop}}" width="50px" height="50px"> {{ match.doi_bong.filter.last}} <strong>vs</strong> {{ match.doi_bong.filter.first}} <img src="{{ds.pop}}" width="50px" height="50px"></li>
+                              <li class="list-group-item">Tỉ số: {{ match.diem_so }}</li>
+                              <li class="list-group-item">Thời gian: {{ match.thoi_gian.date }}</li>
+                              <li class="list-group-item">Địa điểm: {{ match.dia_diem }}</li>
+                          </ul>
+                    </div>
+                        {% endif %}
+                {% endfor %}
+                 </div>
+                    <a class="d-flex justify-content-end" href="{% url 'LichThiDau' %}">Xem tất cả trận đấu</a>
+
+        {% endblock %}
+

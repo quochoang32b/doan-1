@@ -1,0 +1,15 @@
+{% extends 'daihuu/base.html'%}
+{% block  content %}
+<div class="cotainer" style="position: center;">
+<h1 class="text-break" style="text-align: center">{{ post.tieu_de }}</h1>
+    <br/>
+    <div class="container d-flex justify-content-between">
+        <p class="justify-content-start"> <small class="text-muted">Ngày đăng: {{ post.ngay_dang.date}} </small></p>
+        <p class="justify-content-end"> <small class="text-muted">Người đăng: {{ post.tac_gia }} </small></p>
+    </div>
+    <hr>
+        <p class="text-break">{{ post.noi_dung }}</p>
+
+</div>
+
+{% endblock %}

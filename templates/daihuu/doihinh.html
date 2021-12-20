@@ -1,0 +1,18 @@
+{% extends 'daihuu/base.html' %}
+{% block content %}
+    <div class="container">
+    <div class="d-flex flex-wrap">
+    {% for player in some_cauthu %}
+        <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white" class="link-dark">
+        <div class="card" style="width: 12rem; margin: 10px">
+              <img class="card-img-top" src="{{player.hinh_dai_dien.url}}" alt="Card image cap">
+            <div class="card-body">
+                <h6 class="card-title" style="font-weight: bold">{{player.ho}} {{player.ten}}</h6>
+                <p class="card-text">{{ player.vi_tri }}</p>
+             </div>
+        </div>
+        </a>
+    {% endfor %}
+    </div>
+    </div>
+{% endblock %}
