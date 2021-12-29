@@ -40,7 +40,7 @@
 </div>
 {% endblock %}
                 {% block content %}
-                    <h2 style="color: white; padding-bottom: 50px;text-align:center"><span class="badge bg-dark">Bài viết tin tức, hoạt động xã hội của đội bóng</span></h2>
+                    <h2 style="text-align:center;font-weight: bold;">Bài viết tin tức, hoạt động xã hội của đội bóng</h2>
             <div class="d-flex flex-wrap" style="padding-bottom: 50px">
                 {% for post in some_post %}
                     <a href="{% url 'PostDetail' post.pk %}" style="text-decoration: white" class="link-dark">
@@ -55,7 +55,7 @@
                 {% endfor %}
             </div>
                     <a class="d-flex justify-content-end" href="{% url 'TinTuc' %}">Xem tất cả bài viết</a>
-                       <h2 style="color: white; padding-bottom: 50px;text-align:center"><span class="badge bg-dark">Các trận bóng</span></h2>
+                       <h2 style="text-align:center;font-weight: bold;">Các trận đấu</h2>
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                           <div class="carousel-inner">
                               {% for match in some_match %}
