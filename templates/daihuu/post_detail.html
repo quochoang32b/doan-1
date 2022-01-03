@@ -1,14 +1,35 @@
-{% extends 'daihuu/base.html'%}
+{% extends 'daihuu/base_no_ad.html'%}
+{%load static%}
 {% block  content %}
-<div class="cotainer" style="position: center;">
-<h1 class="text-break" style="text-align: center">{{ post.tieu_de }}</h1>
-    <br/>
-    <div class="container d-flex justify-content-between">
-        <p class="justify-content-start"> <small class="text-muted">Ngày đăng: {{ post.ngay_dang.date}} </small></p>
-        <p class="justify-content-end"> <small class="text-muted">Người đăng: {{ post.tac_gia }} </small></p>
+<div class="container-fluid">
+<h2 class="text-break" style="text-align: center">{{ post.tieu_de }}</h2>
+<br>
+    <div class="container-fluid d-flex justify-content-between">
+        <p class="d-flex"> <small class="text-muted">Ngày đăng: {{ post.ngay_dang|date:'d/m/Y'}}</small></p>
+        <p class="d-flex"> <small class="text-muted">Người đăng: {{ post.tac_gia }} </small></p>
     </div>
-    <hr>
-        <p class="text-break">{{ post.noi_dung }}</p>
+<div class="d-flex justify-content-center">
+    <img src="{{ post.hinh_dai_dien.url }}" onerror="this.onerror=null; this.src='{% static 'images/default_thumb.jpg' %}'" style="width:800px; height: 400px;">
+</div>
+<br>
+<div class="d-flex justify-content-end">
+{% if user.is_authenticated %}
+  <form action="{% url 'LikePost' object.id %}" method="POST">
+    {% csrf_token %}
+    {% if post_is_liked %}
+    <button type="submit" name="post_id" value="{{object.id}}" class="btn btn-danger">Bỏ like bài viết</button>  <strong class="text-secondary">{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
+    {% else %}
+    <button type="submit" name="post_id" value="{{object.id}}" class="btn btn-info">Like bài viết</button>  <strong class="text-secondary">{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
+    {% endif %}
+  </form>
+{% else %}
+<div class="d-flex align-items-center">
+    <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Đăng nhập để like bài viết!</a> <strong class="text-secondary">&nbsp;{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
+</div>
+{% endif %}
+  </div>
+<br>
+        <p>{{ post.noi_dung }}</p>
 
 </div>
 

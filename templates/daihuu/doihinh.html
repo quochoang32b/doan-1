@@ -1,14 +1,57 @@
-{% extends 'daihuu/base.html' %}
+{% extends 'daihuu/base_no_ad.html' %}
+{%load static%}
 {% block content %}
     <div class="container">
+    <h3 style="font-weight:bold;">Thủ môn</h3>
     <div class="d-flex flex-wrap">
-    {% for player in some_cauthu %}
-        <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white" class="link-dark">
-        <div class="card" style="width: 12rem; margin: 10px">
-              <img class="card-img-top" src="{{player.hinh_dai_dien.url}}" alt="Card image cap">
+    {% for player in thumon %}
+        <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white;margin-right: 50px; margin-bottom: 30px;" class="link-dark">
+        <div class="card" style="width: 15rem;">
+              <img class="card-img-top" src="{{player.hinh_dai_dien.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_ava1.jpg' %}'" alt="Card image cap">
             <div class="card-body">
-                <h6 class="card-title" style="font-weight: bold">{{player.ho}} {{player.ten}}</h6>
-                <p class="card-text">{{ player.vi_tri }}</p>
+                <h6 class="card-title" style="font-weight: bold; text-align: center;">{{player.ho}} {{player.ten}}</h6>
+             </div>
+        </div>
+        </a>
+    {% endfor %}
+    </div>
+
+    <h3 style="font-weight:bold;">Hậu vệ</h3>
+    <div class="d-flex flex-wrap">
+    {% for player in hauve %}
+        <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white;margin-right: 50px; margin-bottom: 30px;" class="link-dark">
+        <div class="card" style="width: 15rem;">
+              <img class="card-img-top" src="{{player.hinh_dai_dien.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_ava1.jpg' %}'" alt="Card image cap">
+            <div class="card-body">
+                <h6 class="card-title" style="font-weight: bold; text-align: center;">{{player.ho}} {{player.ten}}</h6>
+             </div>
+        </div>
+        </a>
+    {% endfor %}
+    </div>
+
+    <h3 style="font-weight:bold;">Tiền vệ</h3>
+    <div class="d-flex flex-wrap">
+    {% for player in tienve %}
+        <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white;margin-right: 50px; margin-bottom: 30px;" class="link-dark">
+        <div class="card" style="width: 15rem;">
+              <img class="card-img-top" src="{{player.hinh_dai_dien.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_ava1.jpg' %}'" alt="Card image cap">
+            <div class="card-body">
+                <h6 class="card-title" style="font-weight: bold; text-align: center;">{{player.ho}} {{player.ten}}</h6>
+             </div>
+        </div>
+        </a>
+    {% endfor %}
+    </div>
+
+    <h3 style="font-weight:bold;">Tiền đạo</h3>
+    <div class="d-flex flex-wrap">
+    {% for player in tiendao %}
+        <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white;margin-right: 50px; margin-bottom: 30px;" class="link-dark">
+        <div class="card" style="width: 15rem;">
+              <img class="card-img-top" src="{{player.hinh_dai_dien.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_ava1.jpg' %}'" alt="Card image cap">
+            <div class="card-body">
+                <h6 class="card-title" style="font-weight: bold; text-align: center;">{{player.ho}} {{player.ten}}</h6>
              </div>
         </div>
         </a>

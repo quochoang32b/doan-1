@@ -1,21 +1,22 @@
-{% extends 'daihuu/base.html' %}
+{% extends 'daihuu/base_no_ad.html' %}
 {% block content %}
-    <div class="d-flex flex-column bd-highlight mb-3">
+{%load static%}
+    <div class="d-flex flex-wrap">
                 {% for post in object_list %}
-                    <a href="{% url 'PostDetail' post.pk %}" style="text-decoration: white" class="link-dark">
-                    <div class="card p-2 bd-highlight" >
-                          <img class="card-img-top" src="{{ post.hinh_dai_dien.url }}" height="500px" alt="Card image cap">
-                          <div class="card-body ">
-                              <div class="d-flex flex-row bd-highlight mb-3">
-                            <h4 class="card-title me-auto" style="font-weight: bold">{{ post.tieu_de }}</h4>
-
-                              <p class="ms-auto">Tác giả: {{ post.tac_gia }}</p>
-                              </div>
-                              <p class="d-flex justify-content-end"> {{post.ngay_dang}}</p>
+                    <a href="{% url 'PostDetail' post.pk %}" style="text-decoration: none; color: black; margin-right:10px">
+                    <div class="card" style="width: 400px;padding-top:50px;">
+                      <img class="card-img-top"src="{{ post.hinh_dai_dien.url }}" onerror="this.onerror=null; this.src='{% static 'images/default_thumb.jpg' %}'" height="200px" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title me-auto">{{ post.tieu_de }}</h5>
+                            <div class="d-flex justify-content-between">
+                              <p><small class="text-muted">Người đăng: {{ post.tac_gia }}</small></p>
+                              <p><small class="text-muted">{{post.ngay_dang|date:'d/m/Y'}}</small></p>
+                            </div>
                             <p class="card-text text-truncate">{{post.noi_dung}}</p>
                           </div>
                     </div>
                     </a>
                 {% endfor %}
-            </div>
+              </div>
+            
 {% endblock %}

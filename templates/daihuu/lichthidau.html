@@ -1,14 +1,22 @@
-{% extends 'daihuu/base.html' %}
+{% extends 'daihuu/base_no_ad.html' %}
+{%load static%}
 {% block content %}
-    {% for match in some_match %}
-                    <div class="p-2 flex-fill bd-highlight align-self-center">
-                          <ul class="list-group list-group" style="text-align: center; border: solid black">
-                              <li class="list-group-item" style="font-weight: bolder; font-size: larger">{{ match.giai_dau}}</li>
-                              <li class="list-group-item"><img src="{{ds.pop}}" width="100px" height="100px"> {{ match.doi_bong.filter.last}} <strong>vs</strong> {{ match.doi_bong.filter.first}} <img src="{{ds.pop}}" width="100px" height="100px"></li>
-                              <li class="list-group-item">Tỉ số: {{ match.diem_so }}</li>
-                              <li class="list-group-item">Thời gian: {{ match.thoi_gian.date }}</li>
-                              <li class="list-group-item">Địa điểm: {{ match.dia_diem }}</li>
-                          </ul>
-                    </div>
-                {% endfor %}
+    <table class="table table-striped table-borderless table-hover table-success"width="100%">
+  <tbody>
+    {% for match in ds_trandau %}
+    <tr class="d-flex">
+      <td width="10%" class="d-flex align-items-center" style="font-weight:bold">{{ match.giai_dau}}</td>
+      <td width="15%" class="d-flex align-items-center justify-content-start ">{{match.thoi_gian|date:'d/m/Y'}} - {{match.thoi_gian|date:'H:i'}}</td>
+      <td width="15%" class="d-flex align-items-center justify-content-center" style="font-weight:bold;">{{ match.dia_diem}}</td>
+      <td width="5%"></td>
+      <td width="10%" class="d-flex align-items-center justify-content-center">{{ match.doi_bong.filter.first}}</td>
+      <td width="7%" class="d-flex align-items-center justify-content-start"><img class="rounded-circle" src="{{ds.pop}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo1.jpg' %}'" width="50px" height="50px"></td>
+      <td width="10%" class="d-flex align-items-center justify-content-center" style="font-family: Iceland; font-size: 40px; font-weight: bold; color: green;">{{ match.diem_so }}</td>
+      <td width="7%"  class="d-flex align-items-center justify-content-center"><img class="rounded-circle" src="{{ds.pop}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo2.jpg' %}'" width="50px" height="50px"></td>
+      <td width="10%" class="d-flex align-items-center justify-content-center">{{ match.doi_bong.filter.last}}</td>
+      <td class="d-flex flex-grow-1"></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
