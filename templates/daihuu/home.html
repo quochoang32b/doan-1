@@ -17,13 +17,13 @@
         </style>
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
   <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="1500">
+    <div class="carousel-item active" data-bs-interval="3000">
       <img src="{% static 'images/show1.jpg' %}" class="d-block w-100" alt="...">
     </div>
-    <div class="carousel-item" data-bs-interval="1500">
+    <div class="carousel-item" data-bs-interval="3000">
       <img src="{% static 'images/show2.jpg' %}" class="d-block w-100" alt="...">
     </div>
-    <div class="carousel-item" data-bs-interval="1500">
+    <div class="carousel-item" data-bs-interval="3000">
       <img src="{% static 'images/show3.jpg' %}" class="d-block w-100" alt="...">
     </div>
   </div>
@@ -37,31 +37,8 @@
 {% endblock %}
                 {% block content %}
                 <h2 style="text-align:center;font-weight: bold;">LỊCH THI ĐẤU</h2>
-                <!--
-                    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                          <div class="carousel-inner">
-                              {% for match in some_match %}
-                              <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}" data-bs-interval="1500" style="height: 150px">
-                              <div class="carousel-caption d-none d-md-block" style="font-weight: bold">
-                                  {{ match.giai_dau}}<br/>
-                                  {{ match.doi_bong.filter.last}} vs {{ match.doi_bong.filter.first}}<br/>
-                                  {{ match.diem_so }}
-                              </div>
-                            </div>
-                              {% endfor %}
-                          </div>
-                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                          </button>
-                          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                          </button>
-                    </div>
-                -->
-                <div class="d-flex justify-content-center table-responsive">
-                    <table class="table table-hover table-borderless table-success table-sm" style="width:60%; border-bottom: 1px solid;">
+                <div class="d-flex justify-content-center">
+                    <table class="table table-borderless table-hover table-primary table-sm table-responsive" style="width:80%; border-bottom: 1px solid;">
                           <tbody>
                             {% for match in some_match %}
                             {% if forloop.counter == 1%}
