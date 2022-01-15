@@ -3,19 +3,21 @@
 {%load static%}
     <div class="d-flex flex-wrap">
                 {% for post in object_list %}
-                    <a href="{% url 'PostDetail' post.pk %}" style="text-decoration: none; color: black; margin-right:10px">
-                    <div class="card" style="width: 400px;padding-top:50px;">
-                      <img class="card-img-top"src="{{ post.hinh_dai_dien.url }}" onerror="this.onerror=null; this.src='{% static 'images/default_thumb.jpg' %}'" height="200px" alt="Card image cap">
-                          <div class="card-body">
-                            <h5 class="card-title me-auto">{{ post.tieu_de }}</h5>
-                            <div class="d-flex justify-content-between">
-                              <p><small class="text-muted">Người đăng: {{ post.tac_gia }}</small></p>
-                              <p><small class="text-muted">{{post.ngay_dang|date:'d/m/Y'}}</small></p>
-                            </div>
-                            <p class="card-text text-truncate">{{post.noi_dung}}</p>
+                      <div class="bg-image hover-zoom" style="margin-right: 10px;">
+                          <a href="{% url 'PostDetail' post.pk %}" style="text-decoration: none; color: black">
+                          <div class="card" style="width: 400px;padding-top:50px;">
+                            <img class="card-img-top"src="{{ post.hinh_dai_dien.url }}" onerror="this.onerror=null; this.src='{% static 'images/default_thumb.jpg' %}'" height="200px" alt="Card image cap">
+                                <div class="card-body">
+                                  <h5 class="card-title me-auto" style="font-size:23px">{{ post.tieu_de }}</h5>
+                                  <div class="d-flex justify-content-between">
+                                    <p><small class="text-muted">Người đăng: {{ post.tac_gia }}</small></p>
+                                    <p><small class="text-muted">{{post.ngay_dang|date:'d/m/Y - H:i'}}</small></p>
+                                  </div>
+                                  <p class="card-text">{{post.noi_dung|truncatewords_html:15|safe}}</p>
+                                </div>
                           </div>
-                    </div>
-                    </a>
+                          </a>
+                      </div>
                 {% endfor %}
               </div>
             

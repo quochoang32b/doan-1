@@ -1,10 +1,10 @@
 {% extends 'daihuu/base_no_ad.html' %}
 {% load static %}
-    {% block slider %}
+{% block slider %}
         <style>
 
    .carousel .carousel-item {
-  height: 700px;
+  height: 600px;
    }
 
     .carousel-item img {
@@ -12,12 +12,12 @@
         object-fit:cover;
         top: 0;
         left: 0;
-        min-height: 500px;
+        min-height: 600px;
     }
         </style>
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
   <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="1500" style="width: content-box">
+    <div class="carousel-item active" data-bs-interval="1500">
       <img src="{% static 'images/show1.jpg' %}" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item" data-bs-interval="1500">
@@ -28,17 +28,15 @@
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
+    <span class="carousel-control-prev-icon" ></span>
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
+    <span class="carousel-control-next-icon" ></span>
   </button>
 </div>
 {% endblock %}
                 {% block content %}
-                <h2 style="text-align:center;font-weight: bold;">KẾT QUẢ TRẬN ĐẤU</h2>
+                <h2 style="text-align:center;font-weight: bold;">LỊCH THI ĐẤU</h2>
                 <!--
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                           <div class="carousel-inner">
@@ -62,20 +60,20 @@
                           </button>
                     </div>
                 -->
-                <div class="d-flex justify-content-center">
-                    <table class="table table-borderless table-info table-sm" style="width:600px">
+                <div class="d-flex justify-content-center table-responsive">
+                    <table class="table table-hover table-borderless table-success table-sm" style="width:60%; border-bottom: 1px solid;">
                           <tbody>
                             {% for match in some_match %}
                             {% if forloop.counter == 1%}
                             <tr class="d-flex">
-                                 <td class="flex-fill d-flex justify-content-center align-items-center"  style="border-top: 1px solid;"><strong>{{match.giai_dau}}</strong></td>
+                                 <td class="flex-fill d-flex justify-content-center align-items-center"  style="font-weight: bold;border-top: 1px solid;">{{match.giai_dau}}</td>
                             </tr>
                             <tr class="d-flex">
-                                <td class="flex-fill d-flex justify-content-center align-items-center" width="20%"><strong>{{ match.doi_bong.filter.first}}</strong></td>
-                                <td class="flex-fill d-flex justify-content-center align-items-center" width="20%"><img class="rounded-circle" src="{{ds1.pop}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo1.jpg' %}'" width="80px" height="80px"></td>
-                                <td class="flex-fill d-flex justify-content-center align-items-center" width="20%" style="font-family:Iceland;font-size: 60px;font-weight: bold; color: green;">{{ match.diem_so }}</td>
-                                <td class="flex-fill d-flex justify-content-center align-items-center" width="20%"><img class="rounded-circle" src="{{ds1.pop}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo2.jpg' %}'" width="80px" height="80px"></td>
-                                <td class="flex-fill d-flex justify-content-center align-items-center" width="20%"><strong>{{ match.doi_bong.filter.last}}</strong></td>
+                                <td class="flex-fill d-flex justify-content-center align-items-center" style="font-weight: bold;" width="20%">{{ match.doi_bong.filter.first}}</td>
+                                <td class="flex-fill d-flex justify-content-center align-items-center bg-image hover-zoom" width="20%"><img class="rounded-circle img-fluid" src="{{match.doi_bong.all.filter.first.logo.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo1.jpg' %}'" width="100px" height="100px"></td>
+                                <td class="flex-fill d-flex justify-content-center align-items-center" width="auto" style="font-family:Iceland;font-size: 60px;font-weight: bold; color: green;">{{ match.diem_so }}</td>
+                                <td class="flex-fill d-flex justify-content-center align-items-center bg-image hover-zoom" width="20%"><img class="rounded-circle img-fluid" src="{{match.doi_bong.all.filter.last.logo.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo2.jpg' %}'" width="100px" height="100px"></td>
+                                <td class="flex-fill d-flex justify-content-center align-items-center" style="font-weight: bold;" width="20%">{{ match.doi_bong.filter.last}}</td>
                           </tr>
                           <tr class="d-flex">
                                  <td class="flex-fill d-flex justify-content-center align-items-center" style="border-bottom: 1px solid;">{{match.thoi_gian|date:'d/m/Y - H:i'}}</td>
@@ -85,7 +83,7 @@
                             {% if forloop.counter > 1 and forloop.counter < 5%}
                                 <td class="flex-fill d-flex justify-content-center align-items-center" width="20%"></td>
                                 <td class="flex-fill d-flex justify-content-center align-items-center" width="20%">{{ match.doi_bong.filter.first}}</td>
-                                <td class="flex-fill d-flex justify-content-center align-items-center" width="20%" style="font-family:Iceland;font-size: larger;font-weight: bold; color: green;">{{ match.diem_so }}</td>
+                                <td class="flex-fill d-flex justify-content-center align-items-center" width="20%" style="font-family:Iceland;font-size: 20px;font-weight: bold; color: green;">{{ match.diem_so }}</td>
                                 <td class="flex-fill d-flex justify-content-center align-items-center"width="20%">{{ match.doi_bong.filter.last}}</td>
                                 <td class="flex-fill d-flex justify-content-center align-items-center" width="20%"></td>
                             {%endif%}
@@ -97,18 +95,19 @@
                  <div class="d-flex justify-content-center">
                     <a href="{% url 'LichThiDau' %}" class="ml-auto btn btn-sm btn-primary active" role="button">XEM THÊM TRẬN ĐẤU</a>
                 </div>
-            <h2 style="text-align: center; font-weight: bold; padding-top: 70px;">TIN TỨC</h2>
+            <h2 style="text-align: center; font-weight: bold; padding-top: 70px;">TIN TỨC MỚI</h2>
             <div class="d-flex flex-wrap justify-content-center" style="padding-bottom: 20px;">
                 {% for post in some_post %}
+                    <div class="bg-image hover-zoom mx-1">
                     <a href="{% url 'PostDetail' post.pk %}" style="text-decoration: white; margin-right: 20px;" class="link-dark">
                     <div class="card" style="width: 20rem; max-width: content-box">
                           <img class="card-img-top rounded" src="{{ post.hinh_dai_dien.url }}" onerror="this.onerror=null; this.src='{% static 'images/default_thumb.jpg' %}'" width="500px" height="200px" alt="Card image cap">
                           <div class="card-body">
                             <h5 class="card-title">{{ post.tieu_de }}</h5>
-                            <!--<p class="card-text text-truncate" style="font-weight: normal">{{ post.noi_dung}}</p>-->
                           </div>
                     </div>
                     </a>
+                    </div>
                 {% endfor %}
             </div>
                 <div class="d-flex justify-content-center">

@@ -11,11 +11,7 @@ def HomeView(request):
     some_post = Post.objects.all().order_by("-ngay_dang")[0:3]
     some_match = TranDau.objects.all().order_by("-thoi_gian")
     some_team = DoiBong.objects.all()
-    ds1=[]
-    for i in TranDau.objects.all():
-        for j in DoiBong.objects.filter(tran_dau__id=i.id).order_by("-id"):
-            ds1.append(j.logo.url)
-    return render(request, 'daihuu/home.html', {'some_post': some_post, 'some_match': some_match,'some_team':some_team, 'table_doi_bong':DoiBong, 'table_tran_dau':TranDau, 'ds1': ds1})
+    return render(request, 'daihuu/home.html', {'some_post': some_post, 'some_match': some_match,'some_team':some_team})
 
 class TinTucView(ListView):
     model = Post
@@ -63,8 +59,8 @@ class DoiHinhDetailView(DetailView):
 
 def LichThiDauView(request):
     some_match_lich = TranDau.objects.all().order_by("-thoi_gian")
-    danh_sach = []
-    for i in TranDau.objects.all():
-        for j in DoiBong.objects.filter(tran_dau__id=i.id).order_by("-id"):
-            danh_sach.append(j.logo.url)
-    return render(request, 'daihuu/lichthidau.html', {'ds_trandau': some_match_lich, 'ds': danh_sach})
+    return render(request, 'daihuu/lichthidau.html', {'ds_trandau': some_match_lich})
+
+def LichThiDauDetailView(request,pk):
+    some_match_detail = TranDau.objects.filter(id = pk)
+    return render(request,'daihuu/lichthidau_detail.html',{'some_match_detail':some_match_detail})

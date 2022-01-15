@@ -6,9 +6,9 @@
     <div class="d-flex flex-wrap">
     {% for player in thumon %}
         <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white;margin-right: 50px; margin-bottom: 30px;" class="link-dark">
-        <div class="card" style="width: 15rem;">
+        <div class="card bg-image hover-zoom" style="width: 12rem;">
               <img class="card-img-top" src="{{player.hinh_dai_dien.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_ava1.jpg' %}'" alt="Card image cap">
-            <div class="card-body">
+            <div class="card-body" style="padding-top:20px">
                 <h6 class="card-title" style="font-weight: bold; text-align: center;">{{player.ho}} {{player.ten}}</h6>
              </div>
         </div>
@@ -20,9 +20,9 @@
     <div class="d-flex flex-wrap">
     {% for player in hauve %}
         <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white;margin-right: 50px; margin-bottom: 30px;" class="link-dark">
-        <div class="card" style="width: 15rem;">
+        <div class="card bg-image hover-zoom" style="width: 12rem;">
               <img class="card-img-top" src="{{player.hinh_dai_dien.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_ava1.jpg' %}'" alt="Card image cap">
-            <div class="card-body">
+            <div class="card-body" style="padding-top:20px">
                 <h6 class="card-title" style="font-weight: bold; text-align: center;">{{player.ho}} {{player.ten}}</h6>
              </div>
         </div>
@@ -34,9 +34,9 @@
     <div class="d-flex flex-wrap">
     {% for player in tienve %}
         <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white;margin-right: 50px; margin-bottom: 30px;" class="link-dark">
-        <div class="card" style="width: 15rem;">
+        <div class="card bg-image hover-zoom" style="width: 12rem;">
               <img class="card-img-top" src="{{player.hinh_dai_dien.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_ava1.jpg' %}'" alt="Card image cap">
-            <div class="card-body">
+            <div class="card-body" style="padding-top:20px">
                 <h6 class="card-title" style="font-weight: bold; text-align: center;">{{player.ho}} {{player.ten}}</h6>
              </div>
         </div>
@@ -48,9 +48,9 @@
     <div class="d-flex flex-wrap">
     {% for player in tiendao %}
         <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white;margin-right: 50px; margin-bottom: 30px;" class="link-dark">
-        <div class="card" style="width: 15rem;">
+        <div class="card bg-image hover-zoom" style="width: 12rem;">
               <img class="card-img-top" src="{{player.hinh_dai_dien.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_ava1.jpg' %}'" alt="Card image cap">
-            <div class="card-body">
+            <div class="card-body" style="padding-top:20px">
                 <h6 class="card-title" style="font-weight: bold; text-align: center;">{{player.ho}} {{player.ten}}</h6>
              </div>
         </div>

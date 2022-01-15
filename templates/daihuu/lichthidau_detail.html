@@ -1,0 +1,11 @@
+{% extends 'daihuu/base_no_ad.html' %}
+{%load static%}
+{% block content %}
+{% for match in some_match_detail %}
+{% for x in match.doi_bong.all %}
+{% for y in x.cau_thu.all %}
+{{y.ho|linebreaks}} {{y.ten}}
+{% endfor %}
+{% endfor %}
+{% endfor %}
+{% endblock %}

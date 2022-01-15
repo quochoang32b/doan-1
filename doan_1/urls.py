@@ -24,5 +24,6 @@ urlpatterns = [
     path('', include('daihuu.urls')),
     path('thanhvien/', include('django.contrib.auth.urls')),
     path('thanvien/', include('thanhvien.urls')),
+    path('tinymce/', include('tinymce.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

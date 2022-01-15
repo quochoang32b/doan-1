@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 class Post(models.Model):
     ma_post = models.CharField(max_length=50, blank=True, null=True, unique=True)
     tieu_de = models.CharField(max_length=200, unique=True)
     tac_gia = models.ForeignKey(User, on_delete=models.CASCADE)
-    noi_dung = models.TextField()
-    hinh_dai_dien = models.ImageField(null=True, blank=True)
+    noi_dung = HTMLField()
+    hinh_dai_dien = models.ImageField(null=True, blank=True, upload_to='images/')
     ngay_dang = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(User, null=True, blank=True, related_name='post_like')
 
@@ -22,7 +23,7 @@ class Post(models.Model):
 class DoiBong(models.Model):
     ma_doi_bong = models.CharField(max_length=50, blank=True, null=True, unique=True)
     ten_doi_bong = models.CharField(max_length=50)
-    logo = models.ImageField(null=True, blank=True)
+    logo = models.ImageField(null=True, blank=True, upload_to='images/')
     def __str__(self):
         return self.ten_doi_bong
 
@@ -46,7 +47,7 @@ class DoiHinh(models.Model):
         return self.ten
 """
 class CauThu(models.Model):
-    doi_bong = models.ForeignKey(DoiBong, null=True, blank=True, on_delete=models.SET_NULL)
+    doi_bong = models.ForeignKey(DoiBong, null=True, blank=True, on_delete=models.SET_NULL, related_name='cau_thu')
     ma_cau_thu = models.CharField(max_length=50, blank=True, null=True, unique=True)
     ho = models.CharField(max_length=50)
     ten = models.CharField(max_length=50)
@@ -60,8 +61,9 @@ class CauThu(models.Model):
     so_ban_thang = models.CharField(max_length=50)
     so_lan_cuu_thua = models.CharField(max_length=50)
     tieu_su = models.TextField()
-    hinh_dai_dien = models.ImageField(null=True, blank=True)
+    hinh_dai_dien = models.ImageField(null=True, blank=True, upload_to='images/')
     tinh_trang = models.CharField(max_length=50)
+    doi_hinh = models.CharField(max_length=50, default = "Chính thức")
     def __str__(self):
         return self.ho + ' ' + self.ten
 
