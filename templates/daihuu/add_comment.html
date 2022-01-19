@@ -1,0 +1,13 @@
+{% extends 'daihuu/base_no_ad.html' %}
+{%load static%}
+{% block content %}
+<h1>Thêm bình luận</h1>
+<br>
+<div class="form-group">
+<form method="POST">
+	{% csrf_token %}
+	{{form.as_p}}
+	<button class="btn btn-primary">Đăng</button>
+	
+</div>
+{% endblock %}

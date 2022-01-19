@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView
-from .models import Post, CauThu, DoiBong, TranDau
+from django.views.generic import ListView, DetailView, CreateView
+from .models import Post, CauThu, DoiBong, TranDau, Comment
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from .forms import CommentForm
 # Create your views here.
 #def home(request):
  #   return render(request, 'daihuu/home.html')
@@ -62,5 +63,17 @@ def LichThiDauView(request):
     return render(request, 'daihuu/lichthidau.html', {'ds_trandau': some_match_lich})
 
 def LichThiDauDetailView(request,pk):
-    some_match_detail = TranDau.objects.filter(id = pk)
-    return render(request,'daihuu/lichthidau_detail.html',{'some_match_detail':some_match_detail})
+    some_match_thi_dau = TranDau.objects.filter(id = pk)
+    daihuu = CauThu.objects.filter(doi_bong__ma_doi_bong="daihuu")
+    chinhthuc = daihuu.filter(doi_hinh = "Chính thức")
+    return render(request,'daihuu/lichthidau_detail.html',{'daihuu':daihuu, 'chinhthuc':chinhthuc,'some_match_thi_dau':some_match_thi_dau})
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = "daihuu/add_comment.html"
+    #fields = '__all__'
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+    success_url = reverse_lazy('TinTuc')

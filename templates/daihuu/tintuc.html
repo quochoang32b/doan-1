@@ -11,7 +11,7 @@
                                   <h5 class="card-title me-auto" style="font-size:23px">{{ post.tieu_de }}</h5>
                                   <div class="d-flex justify-content-between">
                                     <p><small class="text-muted">Người đăng: {{ post.tac_gia }}</small></p>
-                                    <p><small class="text-muted">{{post.ngay_dang|date:'d/m/Y - H:i'}}</small></p>
+                                    <p><small class="text-muted">{{post.ngay_dang|date:'d/m/Y, H:i'}}</small></p>
                                   </div>
                                   <p class="card-text">{{post.noi_dung|truncatewords_html:15|safe}}</p>
                                 </div>

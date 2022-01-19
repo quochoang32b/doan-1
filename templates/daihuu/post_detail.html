@@ -6,13 +6,16 @@
 <br>
     <div class="container-fluid d-flex justify-content-between">
         <p class="d-flex"> <small class="text-muted">Người đăng: {{ post.tac_gia }} </small></p>
-        <p class="d-flex"> <small class="text-muted">Ngày đăng: {{ post.ngay_dang|date:'d/m/Y - H:i'}}</small></p>
+        <p class="d-flex"> <small class="text-muted">Ngày đăng: {{ post.ngay_dang|date:'d/m/Y, H:i'}}</small></p>
     </div>
 <div class="d-flex justify-content-center">
-    <img src="{{ post.hinh_dai_dien.url }}" onerror="this.onerror=null; this.src='{% static 'images/default_thumb.jpg' %}'" style="width:900px; height: 500px;">
+    <img class="img-fluid" src="{{ post.hinh_dai_dien.url }}" onerror="this.onerror=null; this.src='{% static 'images/default_thumb.jpg' %}'" style="width:900px; height: 500px;">
 </div>
 <br>
-<div class="d-flex justify-content-end">
+    <p>{{ post.noi_dung|safe}}</p>
+<br>
+<hr>
+<div class="d-flex justify-content-start">
 {% if user.is_authenticated %}
   <form action="{% url 'LikePost' object.id %}" method="POST">
     {% csrf_token %}
@@ -24,12 +27,51 @@
   </form>
 {% else %}
 <div class="d-flex align-items-center">
-    <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Đăng nhập để like bài viết!</a> <strong class="text-secondary">&nbsp;{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
+    <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Đăng nhập để like bài viết!</a><strong class="text-secondary">&nbsp;{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
 </div>
 {% endif %}
   </div>
-<br>
-    <p>{{ post.noi_dung|safe}}</p>
-</div>
+{% if not post.comments.all %}
+<h3>Bình luận</h3>
+<p>Chưa có bình luận</p>
+{% if user.is_authenticated %}
+<div class="col-md-8 card mb-4  mt-3 ">
+      <div class="card-body">
+        <h3>Hãy đăng bình luận đầu tiên</h3>
+        <a class="btn btn-primary" href="{% url 'AddComment' post.pk %}">Thêm bình luận</a>
+      </div>
+    </div>
+{% else %}
+<a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Đăng nhập để bình luận bài viết!</a>
+{% endif %}
+{% else %}
 
+<div class="col-md-8 card mb-4  mt-3 ">
+      <div class="card-body">
+        <h3>{{ comment.count }} Bình luận</h3>
+        {% for comment in post.comments.all %}
+        <div class="comments" style="padding: 10px;">
+          <p class="font-weight-bold">
+            {{ comment.ten }}&emsp;
+            <span class=" text-muted font-weight-normal">
+              {{ comment.ngay_dang }}
+            </span>
+          </p>
+          {{ comment.noi_dung |safe | linebreaks }}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="col-md-8 card mb-4  mt-3 ">
+      <div class="card-body">
+        <h3>Để lại bình luận</h3>
+        <a class="btn btn-primary" href="{% url 'AddComment' post.pk %}">Thêm bình luận</a>
+      </div>
+    </div>
+    {% else %}
+<a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Đăng nhập để bình luận bài viết!</a>
+    {% endif %}
+{% endif %}
+  </div>
 {% endblock %}

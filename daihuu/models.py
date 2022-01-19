@@ -4,7 +4,7 @@ from tinymce.models import HTMLField
 
 class Post(models.Model):
     ma_post = models.CharField(max_length=50, blank=True, null=True, unique=True)
-    tieu_de = models.CharField(max_length=200, unique=True)
+    tieu_de = models.CharField(max_length=200, unique=True, verbose_name='Tiêu đề')
     tac_gia = models.ForeignKey(User, on_delete=models.CASCADE)
     noi_dung = HTMLField()
     hinh_dai_dien = models.ImageField(null=True, blank=True, upload_to='images/')
@@ -20,6 +20,9 @@ class Post(models.Model):
     def __str__(self):
         return self.tieu_de
 
+    def get_absolute_url(self):
+        return reverse('PostDetail', args=(str(self.id)))
+
 class DoiBong(models.Model):
     ma_doi_bong = models.CharField(max_length=50, blank=True, null=True, unique=True)
     ten_doi_bong = models.CharField(max_length=50)
@@ -34,6 +37,11 @@ class TranDau(models.Model):
     diem_so = models.CharField(max_length=50)
     dia_diem = models.CharField(max_length=50)
     thoi_gian = models.DateTimeField()
+    trong_tai = models.CharField(max_length=50, default="Không")
+    ban_thang = HTMLField(default="Không")
+    pham_loi = HTMLField(default="Không")
+    chien_thuat = models.ImageField(null=True, blank=True, upload_to='images/')
+
 
     def __str__(self):
         return self.ma_tran_dau
@@ -68,6 +76,12 @@ class CauThu(models.Model):
         return self.ho + ' ' + self.ten
 
 
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    ten = models.CharField(max_length=50)
+    noi_dung = HTMLField()
+    ngay_dang = models.DateTimeField(auto_now_add=True)
 
-
+    def __str__(self):
+        return '%s - %s' % (self.post.tieu_de, self.ten)
 

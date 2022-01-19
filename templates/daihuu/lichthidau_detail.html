@@ -1,11 +1,42 @@
 {% extends 'daihuu/base_no_ad.html' %}
 {%load static%}
 {% block content %}
-{% for match in some_match_detail %}
-{% for x in match.doi_bong.all %}
-{% for y in x.cau_thu.all %}
-{{y.ho|linebreaks}} {{y.ten}}
-{% endfor %}
-{% endfor %}
-{% endfor %}
+  <h1 style="text-align:center;"><strong>Chi tiết trận đấu</strong></h1>
+  <br>
+  <div class="d-flex flex-wrap">
+    <div>
+          <h5><strong>Đội hình</strong></h5>
+      <table class="table table-bordered table-responsive" style="width:500px">
+        <tbody>
+          {% for player in chinhthuc %}
+          <tr class="d-flex">
+            <td width="10%" class="d-flex align-items-center justify-content-end" style="font-size:large;">{{ player.so_ao}}.</td>
+            <td width="50%" class="d-flex align-items-center" style="font-size:large;">{{ player.ho}} {{player.ten}} </td>
+            <td width="40%" class="d-flex align-items-center" style="font-size:large;">{{ player.vi_tri}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+  </div>
+  {% for match in some_match_thi_dau %}
+  <div>
+      <h5 style="text-align:center"><strong>Chiến thuật</strong></h5>
+      <img class="img-fluid" src="{{match.chien_thuat.url}}" style="width: 400px; height: 400px;">
+  </div>
+  <div style="padding-left:50px">   
+            <h5 style="text-align:center;padding-top:30px"><strong>Trọng tài</strong></h5>
+            <p>{{ match.trong_tai}}</p>
+          <hr>
+            <h5 style="text-align:center"><strong>Tỉ số</strong></h5>
+            <p>{{ match.doi_bong.filter.first}}&emsp;{{ match.diem_so }}&emsp;{{ match.doi_bong.filter.last}}</p>
+          <hr>
+            <h5 style="text-align:center"><strong>Bàn thắng</strong></h5>
+            <p>{{ match.ban_thang|safe}}</p>
+          <hr>
+            <h5 style="text-align:center"><strong>Phạm lỗi</strong></h5>
+            <p>{{ match.pham_loi|safe}}</p>
+          {% endfor %}
+  </div>
+
+  </div>
 {% endblock %}
