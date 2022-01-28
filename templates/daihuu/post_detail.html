@@ -1,60 +1,52 @@
 {% extends 'daihuu/base_no_ad.html'%}
 {%load static%}
 {% block  content %}
+{% for post in some_post_detail %}
 <div class="container-fluid">
 <h2 class="text-break" style="text-align: center">{{ post.tieu_de }}</h2>
 <br>
     <div class="container-fluid d-flex justify-content-between">
         <p class="d-flex"> <small class="text-muted">Người đăng: {{ post.tac_gia }} </small></p>
-        <p class="d-flex"> <small class="text-muted">Ngày đăng: {{ post.ngay_dang|date:'d/m/Y, H:i'}}</small></p>
+        <p class="d-flex"> <small class="text-muted">Ngày đăng: {{ post.ngay_dang|date:'H:i, d/m/Y'}}</small></p>
     </div>
 <div class="d-flex justify-content-center">
+    {% if post.hinh_dai_dien %}
     <img class="img-fluid" src="{{ post.hinh_dai_dien.url }}" onerror="this.onerror=null; this.src='{% static 'images/default_thumb.jpg' %}'" style="width:900px; height: 500px;">
+    {% endif %}
 </div>
 <br>
-    <p>{{ post.noi_dung|safe}}</p>
-<br>
-<hr>
-<div class="d-flex justify-content-start">
+<div class="d-flex justify-content-end">
 {% if user.is_authenticated %}
-  <form action="{% url 'LikePost' object.id %}" method="POST">
+  <form action="{% url 'LikePost' post.id %}" method="POST">
     {% csrf_token %}
     {% if post_is_liked %}
-    <button type="submit" name="post_id" value="{{object.id}}" class="btn btn-danger">Bỏ like bài viết</button>  <strong class="text-secondary">{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
+    <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-danger btn-sm">Unlike <i class="fa fa-thumbs-o-down"></i></button>  <strong class="text-secondary">{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
     {% else %}
-    <button type="submit" name="post_id" value="{{object.id}}" class="btn btn-info">Like bài viết</button>  <strong class="text-secondary">{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
+    <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-success btn-sm">Like <i class="fa fa-thumbs-o-up"></i></button>  <strong class="text-secondary">{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
     {% endif %}
   </form>
 {% else %}
 <div class="d-flex align-items-center">
-    <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Đăng nhập để like bài viết!</a><strong class="text-secondary">&nbsp;{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
+    <a class="btn btn-outline-primary" href="{% url 'login' %}?next={{request.path}}">Đăng nhập để like bài viết!</a><strong class="text-secondary">&nbsp;{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
 </div>
 {% endif %}
-  </div>
-{% if not post.comments.all %}
+</div>
+    <p>{{ post.noi_dung|safe}}</p>
+{% endfor %}
+<hr>
+{% if not comments %}
 <h3>Bình luận</h3>
 <p>Chưa có bình luận</p>
-{% if user.is_authenticated %}
-<div class="col-md-8 card mb-4  mt-3 ">
-      <div class="card-body">
-        <h3>Hãy đăng bình luận đầu tiên</h3>
-        <a class="btn btn-primary" href="{% url 'AddComment' post.pk %}">Thêm bình luận</a>
-      </div>
-    </div>
 {% else %}
-<a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Đăng nhập để bình luận bài viết!</a>
-{% endif %}
-{% else %}
-
 <div class="col-md-8 card mb-4  mt-3 ">
       <div class="card-body">
         <h3>{{ comment.count }} Bình luận</h3>
-        {% for comment in post.comments.all %}
+        {% for comment in comments %}
         <div class="comments" style="padding: 10px;">
           <p class="font-weight-bold">
             {{ comment.ten }}&emsp;
             <span class=" text-muted font-weight-normal">
-              {{ comment.ngay_dang }}
+              {{ comment.ngay_dang|date:'H:i, d/m/Y' }}
             </span>
           </p>
           {{ comment.noi_dung |safe | linebreaks }}
@@ -62,16 +54,19 @@
         {% endfor %}
       </div>
     </div>
-    {% if user.is_authenticated %}
-    <div class="col-md-8 card mb-4  mt-3 ">
-      <div class="card-body">
-        <h3>Để lại bình luận</h3>
-        <a class="btn btn-primary" href="{% url 'AddComment' post.pk %}">Thêm bình luận</a>
-      </div>
-    </div>
-    {% else %}
-<a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Đăng nhập để bình luận bài viết!</a>
-    {% endif %}
 {% endif %}
-  </div>
+<hr>
+{% if user.is_authenticated %}
+<h3>Hãy để lại bình luận của bạn!</h3>
+<form method="POST">
+    {% csrf_token %}
+    {{comment_form.as_p}}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% else %}
+<div class="d-flex align-items-center">
+    <a class="btn btn-outline-primary" href="{% url 'login' %}?next={{request.path}}">Đăng nhập để bình luận bài viết!</a>
+</div>
+{% endif %}
+</div>
 {% endblock %}

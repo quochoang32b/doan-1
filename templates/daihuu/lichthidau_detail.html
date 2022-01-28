@@ -3,40 +3,60 @@
 {% block content %}
   <h1 style="text-align:center;"><strong>Chi tiết trận đấu</strong></h1>
   <br>
-  <div class="d-flex flex-wrap">
-    <div>
-          <h5><strong>Đội hình</strong></h5>
-      <table class="table table-bordered table-responsive" style="width:500px">
+<div class="row">
+  <div class="col-lg-4">
+    <h5 style="text-align:center"><strong>Đội hình {{ some_match_thi_dau.first.doi_bong.all.first }}</strong></h5>
+      <table class="table table-striped table-borderless table-hover table-success table-responsive">
         <tbody>
-          {% for player in chinhthuc %}
+          {% for player in team1 %}
           <tr class="d-flex">
-            <td width="10%" class="d-flex align-items-center justify-content-end" style="font-size:large;">{{ player.so_ao}}.</td>
-            <td width="50%" class="d-flex align-items-center" style="font-size:large;">{{ player.ho}} {{player.ten}} </td>
-            <td width="40%" class="d-flex align-items-center" style="font-size:large;">{{ player.vi_tri}}</td>
+            <td width="50px" class="d-flex align-items-center justify-content-center" style="font-size:large;">{{ player.so_ao}}. </td>
+            <td width="250px" class="d-flex align-items-center" style="font-size:large;">{{ player.ho}} {{player.ten}} </td>
+            <td width="100px" class="d-flex align-items-center" style="font-size:large;">{{ player.vi_tri}}</td>
           </tr>
           {% endfor %}
         </tbody>
         </table>
   </div>
-  {% for match in some_match_thi_dau %}
-  <div>
+  <div class="col-lg-4">
+  <div style="padding-bottom: 20px;">
       <h5 style="text-align:center"><strong>Chiến thuật</strong></h5>
-      <img class="img-fluid" src="{{match.chien_thuat.url}}" style="width: 400px; height: 400px;">
+      {% if some_match_thi_dau.first.chien_thuat %}
+      <img class="img-fluid" src="{{some_match_thi_dau.first.chien_thuat.url}}" style="width: 400px; height: 400px;">
+      {% endif %}
   </div>
-  <div style="padding-left:50px">   
-            <h5 style="text-align:center;padding-top:30px"><strong>Trọng tài</strong></h5>
-            <p>{{ match.trong_tai}}</p>
-          <hr>
-            <h5 style="text-align:center"><strong>Tỉ số</strong></h5>
-            <p>{{ match.doi_bong.filter.first}}&emsp;{{ match.diem_so }}&emsp;{{ match.doi_bong.filter.last}}</p>
-          <hr>
-            <h5 style="text-align:center"><strong>Bàn thắng</strong></h5>
-            <p>{{ match.ban_thang|safe}}</p>
-          <hr>
-            <h5 style="text-align:center"><strong>Phạm lỗi</strong></h5>
-            <p>{{ match.pham_loi|safe}}</p>
+  </div>
+  <div class="col-lg-4">
+    <h5 style="text-align:center;"><strong>Đội hình {{ some_match_thi_dau.first.doi_bong.all.last}}</strong></h5>
+      <table class="table table-striped table-borderless table-hover table-danger table-responsive">
+        <tbody>
+          {% for player2 in team2 %}
+          <tr class="d-flex">
+            <td width="50px" class="d-flex align-items-center justify-content-center" style="font-size:large;">{{ player2.so_ao}}. </td>
+            <td width="250px" class="d-flex align-items-center" style="font-size:large;">{{ player2.ho}} {{player2.ten}} </td>
+            <td width="100px" class="d-flex align-items-center" style="font-size:large;">{{ player2.vi_tri}}</td>
+          </tr>
           {% endfor %}
+        </tbody>
+        </table>
   </div>
-
-  </div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-4">
+  <h5 style="text-align:center;"><strong>Trọng tài</strong></h5>
+  <p style="text-align:center">{{ some_match_thi_dau.first.trong_tai}}</p>
+  <hr>
+  <h5 style="text-align:center"><strong>Tỉ số</strong></h5>
+  <p style="text-align:center">{{ some_match_thi_dau.first.doi_bong.all.first}}&emsp;{{ some_match_thi_dau.first.diem_so }}&emsp;{{some_match_thi_dau.first.doi_bong.all.last}}</p>
+</div>
+<div class="col-lg-4">    
+  <h5 style="text-align:center"><strong>Bàn thắng</strong></h5>
+  <p>{{ some_match_thi_dau.first.ban_thang|safe}}</p>
+</div>
+<div class="col-lg-4">
+  <h5 style="text-align:center"><strong>Phạm lỗi</strong></h5>
+  <p>{{ some_match_thi_dau.first.pham_loi|safe}}</p>
+</div>
+</div>
 {% endblock %}

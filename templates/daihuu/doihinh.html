@@ -7,7 +7,9 @@
     {% for player in thumon %}
         <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white;margin-right: 30px;" class="link-dark">
         <div class="card bg-image hover-zoom" style="width: 15rem;">
+            {% if player.hinh_dai_dien %}
               <img class="card-img-top" height="250px" src="{{player.hinh_dai_dien.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_ava1.jpg' %}'" alt="Card image cap">
+            {% endif %}
             <div class="card-body" style="padding-top:20px">
                 <h6 class="card-title" style="font-weight: bold; text-align: center;">{{player.so_ao}}-{{player.ho}} {{player.ten}}</h6>
              </div>
@@ -21,7 +23,9 @@
     {% for player in hauve %}
         <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white;margin-right: 30px;" class="link-dark">
         <div class="card bg-image hover-zoom" style="width: 15rem;">
+            {% if player.hinh_dai_dien %}
               <img class="card-img-top" height="250px" src="{{player.hinh_dai_dien.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_ava1.jpg' %}'" alt="Card image cap">
+            {% endif %}
             <div class="card-body" style="padding-top:20px">
                 <h6 class="card-title" style="font-weight: bold; text-align: center;">{{player.so_ao}}-{{player.ho}} {{player.ten}}</h6>
              </div>
@@ -35,7 +39,9 @@
     {% for player in tienve %}
         <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white;margin-right: 30px;" class="link-dark">
         <div class="card bg-image hover-zoom" style="width: 15rem;">
+            {% if player.hinh_dai_dien %}
               <img class="card-img-top" height="250px" src="{{player.hinh_dai_dien.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_ava1.jpg' %}'" alt="Card image cap">
+            {% endif %}
             <div class="card-body" style="padding-top:20px">
                 <h6 class="card-title" style="font-weight: bold; text-align: center;">{{player.so_ao}}-{{player.ho}} {{player.ten}}</h6>
              </div>
@@ -49,7 +55,9 @@
     {% for player in tiendao %}
         <a href="{% url 'DoiHinhDetail' player.pk %}" style="text-decoration: white;margin-right: 30px;" class="link-dark">
         <div class="card bg-image hover-zoom" style="width:15rem">
+            {% if player.hinh_dai_dien %}
               <img class="card-img-top" height="250px" src="{{player.hinh_dai_dien.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_ava1.jpg' %}'" alt="Card image cap">
+             {% endif %} 
             <div class="card-body" style="padding-top:20px">
                 <h6 class="card-title" style="font-weight: bold; text-align: center;">{{player.so_ao}}-{{player.ho}} {{player.ten}}</h6>
              </div>
