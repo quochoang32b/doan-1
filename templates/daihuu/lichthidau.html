@@ -9,9 +9,13 @@
       <td width="15%" class="d-flex align-items-center justify-content-start" style="word-break:break-word;">{{match.thoi_gian|date:'d/m/Y'}} - {{match.thoi_gian|date:'H:i'}}</td>
       <td width="15%" class="d-flex align-items-center justify-content-center" style="font-weight:bold;">{{ match.dia_diem}}</td>
       <td width="10%" class="d-flex align-items-center justify-content-center">{{ match.doi_bong.filter.first}}</td>
+      {% if match.doi_bong.all.filter.first.logo %}
       <td width="7%" class="d-flex align-items-center justify-content-start"><img class="rounded-circle img-fluid" src="{{match.doi_bong.all.filter.first.logo.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo1.jpg' %}'" width="60px" height="60px"></td>
+      {% endif %}
       <td width="8%" class="d-flex align-items-center justify-content-center" style="font-family: Iceland; font-size: 30px; font-weight: bold; color: green;word-break:break-word; text-align: center;">{{ match.diem_so }}</td>
+      {% if match.doi_bong.all.filter.last.logo %}
       <td width="7%"  class="d-flex align-items-center justify-content-center"><img class="rounded-circle img-fluid" src="{{match.doi_bong.all.filter.last.logo.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo2.jpg' %}'" width="60px" height="60px"></td>
+      {% endif %}
       <td width="10%" class="d-flex align-items-center justify-content-center">{{ match.doi_bong.filter.last}}</td>
       <td class="d-flex flex-grow-1 align-items-center justify-content-center"><a href="{% url 'LichThiDauDetail' match.pk %}" style="text-decoration: white;">Chi tiết</td>
     </tr>

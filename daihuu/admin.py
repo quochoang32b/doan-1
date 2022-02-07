@@ -15,9 +15,28 @@ class PostAdmin(admin.ModelAdmin):
         CommentInline,
     ]
 
+class CauthuInline(admin.StackedInline):
+    model = CauThu
+    extra = 0
+
+class DoiBongAdmin(admin.ModelAdmin):
+    inlines = [
+        CauthuInline,
+    ]
+
+class TranDauAdmin(admin.ModelAdmin):
+    list_display = ('giai_dau', 'ma_tran_dau','thoi_gian')
+    search_fields = ['giai_dau', 'ma_tran_dau', 'doi_bong__ten_doi_bong']
+
+class CauThuAdmin(admin.ModelAdmin):
+    search_fields = ['ho', 'ten', 'doi_bong__ten_doi_bong']
+
+class CommentAdmin(admin.ModelAdmin):
+    search_fields = ['ten__username', 'post__tieu_de']
+
 
 admin.site.register(Post, PostAdmin)
-admin.site.register(DoiBong)
-admin.site.register(CauThu)
-admin.site.register(TranDau)
-admin.site.register(Comment)
+admin.site.register(DoiBong, DoiBongAdmin)
+admin.site.register(CauThu, CauThuAdmin)
+admin.site.register(TranDau, TranDauAdmin)
+admin.site.register(Comment, CommentAdmin)

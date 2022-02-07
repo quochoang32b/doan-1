@@ -109,6 +109,26 @@ class DoiHinhDetailView(DetailView):
     model = CauThu
     template_name = "daihuu/doihinh_detail.html"
 
+def ChinhThucView(request):
+    #pkdoibong = DoiBong.objects.get(ma_doi_bong="daihuu").pk
+    #some_cauthu = CauThu.objects.filter(doi_bong=pkdoibong)
+    some_cauthu = CauThu.objects.filter(doi_bong__ma_doi_bong="daihuu").filter(doi_hinh="Chính thức")
+    thumon = some_cauthu.filter(vi_tri="Thủ môn")
+    hauve = some_cauthu.filter(vi_tri="Hậu vệ")
+    tienve = some_cauthu.filter(vi_tri="Tiền vệ")
+    tiendao = some_cauthu.filter(vi_tri="Tiền đạo")
+    return render(request, 'daihuu/chinhthuc.html', {'some_cauthu': some_cauthu, 'thumon':thumon, 'hauve':hauve, 'tienve': tienve, 'tiendao': tiendao})
+
+def DuBiView(request):
+    #pkdoibong = DoiBong.objects.get(ma_doi_bong="daihuu").pk
+    #some_cauthu = CauThu.objects.filter(doi_bong=pkdoibong)
+    some_cauthu = CauThu.objects.filter(doi_bong__ma_doi_bong="daihuu").filter(doi_hinh="Dự bị")
+    thumon = some_cauthu.filter(vi_tri="Thủ môn")
+    hauve = some_cauthu.filter(vi_tri="Hậu vệ")
+    tienve = some_cauthu.filter(vi_tri="Tiền vệ")
+    tiendao = some_cauthu.filter(vi_tri="Tiền đạo")
+    return render(request, 'daihuu/dubi.html', {'some_cauthu': some_cauthu, 'thumon':thumon, 'hauve':hauve, 'tienve': tienve, 'tiendao': tiendao})
+
 def LichThiDauView(request):
     some_match_lich = TranDau.objects.all().order_by("-thoi_gian")
     return render(request, 'daihuu/lichthidau.html', {'ds_trandau': some_match_lich})

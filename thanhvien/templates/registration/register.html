@@ -1,15 +1,52 @@
 {% extends 'daihuu/base_no_ad.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-<br>
-<div class="container-fluid">
-    <h1>Đăng ký</h1>
-    <br/><br/>
+{% if form.errors %}
+<div class="alert alert-danger" role="alert" style="width:700px;">
+  Lỗi đăng ký, xin hãy sửa lại thông tin !
+</div>
+{% endif %}
+<div class="container" style="margin: 0; max-width: 700px;">
+    <h1 style="font-weight:bold;">Đăng ký tài khoản</h1>
     <div class="form-group">
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-secondary">
-            Register
+        {{form | crispy}}
+        <!--
+        <div class="form-group">
+            <label><strong>{{form.username.label}}</strong></label>
+            <input type="text" class="form-control" name="username" style="width:500px">
+        </div>
+        <br>
+        <div class="form-group">
+            <label><strong>{{form.last_name.label}}</strong></label>
+            <input type="text" class="form-control" name="last_name" style="width:500px">
+        </div>
+        <br>
+        <div class="form-group">
+            <label><strong>{{form.first_name.label}}</strong></label>
+            <input type="text" class="form-control" name="first_name" style="width:500px">
+        </div>
+        <br>
+        <div class="form-group">
+            <label><strong>{{form.email.label}}</strong></label>
+            <input type="email" class="form-control" name="first_name" style="width:500px">
+        </div>
+        <br>
+        <div class="form-group">
+            <label><strong>{{form.password1.label}}</strong></label>
+            <input type="password" class="form-control" name="password1" style="width:500px">
+        </div>
+        <br>
+            <div class="form-group">
+            <label><strong>{{form.password2.label}}</strong></label>
+            <input type="password" class="form-control" name="password2" style="width:500px">
+        </div>
+        <br>
+    -->
+    <br>
+        <button class="btn btn-primary">
+            Đăng ký
         </button>
     </form>
     </div>

@@ -1,15 +1,28 @@
 {% extends 'daihuu/base_no_ad.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-<br>
-<div class="container-fluid">
- <h1>Đăng nhập</h1>
-    <br/><br/>
+{% if form.errors %}
+<div class="alert alert-danger" role="alert" style="width:700px;">
+  Tên đăng nhập hoặc mật khẩu không đúng, xin hãy thử lại !
+</div>
+{% endif %}
+{% if messages %}
+     {% for message in messages %}
+         <div class="alert alert-success" role="alert" style="width:700px;">
+             {{ message|safe }}
+         </div>
+     {% endfor %}
+ {% endif %}
+<div class="container" style="margin: 0; max-width: 700px;">
+ <h1 style="font-weight:bold;">Đăng nhập tài khoản</h1>
     <div class="form-group">
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-secondary">
-            Login
+        {{form.username|as_crispy_field}}
+        {{form.password|as_crispy_field}}
+  <br>
+        <button class="btn btn-primary">
+            Đăng nhập
         </button>
     </form>
     </div>

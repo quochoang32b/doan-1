@@ -36,24 +36,24 @@
 </div>
 {% endblock %}
                 {% block content %}
-                <h2 style="text-align:center;font-weight: bold; color:#291061">LỊCH THI ĐẤU</h2>
+                <h2 style="text-align:center;font-weight: bold; color:#291061;">LỊCH THI ĐẤU</h2>
                 <div class="d-flex justify-content-center">
-                    <table class="table table-borderless table-sm table-responsive" style="width:60%; border: green 6px solid; background-color: #291061;color: white;">
+                    <table class="table table-borderless table-responsive" style="width:70%; border: green 8px solid; background-color: #291061;color: white;">
                           <tbody>
                             {% for match in some_match %}
                             {% if forloop.counter == 1%}
                             <tr class="d-flex">
-                                 <td class="flex-fill d-flex justify-content-center align-items-center"  style="font-weight: bold;">{{match.giai_dau|upper}}</td>
+                                 <td class="flex-fill d-flex justify-content-center"  style="font-weight: bold; font-size: 30px; color: white;">{{match.giai_dau|upper}}</td>
                             </tr>
                             <tr class="d-flex">
-                                <td class="flex-fill d-flex justify-content-center align-items-center" style="font-weight: bold;" width="20%">{{ match.doi_bong.filter.first|upper}}</td>
-                                <td class="flex-fill d-flex justify-content-center align-items-center bg-image hover-zoom" width="20%"><img class="rounded-circle img-fluid" src="{{match.doi_bong.all.filter.first.logo.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo1.jpg' %}'" width="100px" height="100px"></td>
+                                <td class="flex-fill d-flex justify-content-center align-items-center" style="font-weight: bold; font-size: 18px;" width="20%">{{ match.doi_bong.filter.first|upper}}</td>
+                                <td class="flex-fill d-flex justify-content-center align-items-center bg-image hover-zoom" width="20%"><img class="rounded-circle img-fluid" src="{{match.doi_bong.all.filter.first.logo.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo1.jpg' %}'" width="150px" height="150px"></td>
                                 <td class="flex-fill d-flex justify-content-center align-items-center" width="auto" style="font-family:Iceland;font-size: 50px;font-weight: bold; color: yellow; text-align: center;">{{ match.diem_so }}</td>
-                                <td class="flex-fill d-flex justify-content-center align-items-center bg-image hover-zoom" width="20%"><img class="rounded-circle img-fluid" src="{{match.doi_bong.all.filter.last.logo.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo2.jpg' %}'" width="100px" height="100px"></td>
-                                <td class="flex-fill d-flex justify-content-center align-items-center" style="font-weight: bold;" width="20%">{{ match.doi_bong.filter.last|upper}}</td>
+                                <td class="flex-fill d-flex justify-content-center align-items-center bg-image hover-zoom" width="20%"><img class="rounded-circle img-fluid" src="{{match.doi_bong.all.filter.last.logo.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo2.jpg' %}'" width="150px" height="150px"></td>
+                                <td class="flex-fill d-flex justify-content-center align-items-center" style="font-weight: bold;font-size: 18px;" width="20%">{{ match.doi_bong.filter.last|upper}}</td>
                           </tr>
                           <tr class="d-flex">
-                                 <td class="flex-fill d-flex justify-content-center align-items-center" style="border-bottom: 1px solid;">{{match.thoi_gian|date:'d/m/Y - H:i'}}</td>
+                                 <td class="flex-fill d-flex justify-content-center align-items-center" style="border-bottom: green 5px solid;">{{match.thoi_gian|date:'d/m/Y - H:i'}}</td>
                             </tr>
                             {%endif%}
                             <tr class="d-flex">
@@ -73,7 +73,7 @@
                     <a href="{% url 'LichThiDau' %}" class="ml-auto btn btn-primary active" role="button">XEM THÊM</a>
                 </div>
             <h2 style="text-align: center; font-weight: bold; padding-top: 70px; color:#291061">TIN TỨC MỚI</h2>
-            <div class="d-flex flex-wrap" style="padding-bottom: 20px;">
+            <div class="d-flex flex-wrap">
                 {% for post in some_post %}
                     <div class="bg-image hover-zoom mx-1">
                     <a href="{% url 'PostDetail' post.pk %}" style="text-decoration: white; margin-right: 20px;" class="link-dark">
@@ -84,7 +84,7 @@
                           <div class="card-body">
                             <h5 class="card-title">{{ post.tieu_de }}</h5>
                             <div class="d-flex justify-content-end">
-                                    <p><small class="text-muted">{{post.ngay_dang|date:'H:i, d/m/Y'}}</small></p>
+                                    <p><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i><small class="text-muted">{{post.ngay_dang|date:'H:i, d/m/Y'}}</small></p>
                             </div>
                           </div>
                     </div>

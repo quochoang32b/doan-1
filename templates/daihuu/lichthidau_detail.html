@@ -5,7 +5,11 @@
   <br>
 <div class="row">
   <div class="col-lg-4">
-    <h5 style="text-align:center"><strong>Đội hình {{ some_match_thi_dau.first.doi_bong.all.first }}</strong></h5>
+    {% if some_match_thi_dau.first.doi_bong.all.first.logo %}
+    <img class="rounded-circle img-fluid" src="{{some_match_thi_dau.first.doi_bong.all.first.logo.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo1.jpg' %}'" width="100px" height="100px" style="margin-left:150px;">
+    {% endif %}
+    <br><br>
+    <h5 style="text-align:center; color: green;"><strong>Đội hình {{ some_match_thi_dau.first.doi_bong.all.first }}</strong></h5>
       <table class="table table-striped table-borderless table-hover table-success table-responsive">
         <tbody>
           {% for player in team1 %}
@@ -20,14 +24,18 @@
   </div>
   <div class="col-lg-4">
   <div style="padding-bottom: 20px;">
-      <h5 style="text-align:center"><strong>Chiến thuật</strong></h5>
+      <h5 style="text-align:center"><strong>Chiến thuật Đại Hữu</strong></h5>
       {% if some_match_thi_dau.first.chien_thuat %}
       <img class="img-fluid" src="{{some_match_thi_dau.first.chien_thuat.url}}" style="width: 400px; height: 400px;">
       {% endif %}
   </div>
   </div>
   <div class="col-lg-4">
-    <h5 style="text-align:center;"><strong>Đội hình {{ some_match_thi_dau.first.doi_bong.all.last}}</strong></h5>
+    {% if some_match_thi_dau.first.doi_bong.all.last.logo %}
+    <img class="rounded-circle img-fluid" src="{{some_match_thi_dau.first.doi_bong.all.last.logo.url}}" onerror="this.onerror=null; this.src='{% static 'images/default_logo1.jpg' %}'" width="100px" height="100px" style="margin-left:150px;">
+    {% endif %}
+    <br><br>
+    <h5 style="text-align:center; color: red;"><strong>Đội hình {{ some_match_thi_dau.first.doi_bong.all.last}}</strong></h5>
       <table class="table table-striped table-borderless table-hover table-danger table-responsive">
         <tbody>
           {% for player2 in team2 %}
@@ -44,14 +52,17 @@
 <hr>
 <div class="row">
 <div class="col-lg-4">
+  <h5 style="text-align:center"><strong>Tỉ số</strong></h5>
+  <p style="text-align:center">{{some_match_thi_dau.first.doi_bong.all.first}}&emsp;{{ some_match_thi_dau.first.diem_so }}&emsp;{{some_match_thi_dau.first.doi_bong.all.last}}</p>
+  <br>
+  <h5 style="text-align:center;"><strong>Giải đấu</strong></h5>
+  <p style="text-align:center">{{ some_match_thi_dau.first.giai_dau}}</p>
+  <br>
   <h5 style="text-align:center;"><strong>Trọng tài</strong></h5>
   <p style="text-align:center">{{ some_match_thi_dau.first.trong_tai}}</p>
-  <hr>
-  <h5 style="text-align:center"><strong>Tỉ số</strong></h5>
-  <p style="text-align:center">{{ some_match_thi_dau.first.doi_bong.all.first}}&emsp;{{ some_match_thi_dau.first.diem_so }}&emsp;{{some_match_thi_dau.first.doi_bong.all.last}}</p>
 </div>
 <div class="col-lg-4">    
-  <h5 style="text-align:center"><strong>Bàn thắng</strong></h5>
+  <h5 style="text-align:center;"><strong>Bàn thắng</strong></h5>
   <p>{{ some_match_thi_dau.first.ban_thang|safe}}</p>
 </div>
 <div class="col-lg-4">

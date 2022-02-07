@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import HomeView, PostDetailView, ThongTinView, DoiHinhDetailView, TinTucView, DoiHinhView, PostLike, LichThiDauDetailView
+from .views import HomeView, PostDetailView, ThongTinView, DoiHinhDetailView, TinTucView, DoiHinhView, ChinhThucView, DuBiView, PostLike, LichThiDauDetailView
 from . import views
 urlpatterns = [
     #path('', views.home, name="home"),
@@ -7,6 +7,8 @@ urlpatterns = [
     path('post/<int:pk>', PostDetailView, name="PostDetail"),
     path('thongtin', ThongTinView, name="ThongTin"),
     path('doihinh', DoiHinhView, name="DoiHinh"),
+    path('chinhthuc', ChinhThucView, name="ChinhThuc"),
+    path('dubi', DuBiView, name="DuBi"),
     path('doihinh/<int:pk>', DoiHinhDetailView.as_view(), name="DoiHinhDetail"),
     path('tintuc', TinTucView.as_view(), name="TinTuc"),
     path('lichthidau', views.LichThiDauView, name="LichThiDau"),

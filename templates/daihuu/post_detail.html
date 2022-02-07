@@ -3,11 +3,11 @@
 {% block  content %}
 {% for post in some_post_detail %}
 <div class="container-fluid">
-<h2 class="text-break" style="text-align: center">{{ post.tieu_de }}</h2>
+<h2 class="text-break" style="text-align: center; font-weight: bold;">{{ post.tieu_de }}</h2>
 <br>
     <div class="container-fluid d-flex justify-content-between">
         <p class="d-flex"> <small class="text-muted">Người đăng: {{ post.tac_gia }} </small></p>
-        <p class="d-flex"> <small class="text-muted">Ngày đăng: {{ post.ngay_dang|date:'H:i, d/m/Y'}}</small></p>
+        <p class="d-flex"> <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i> {{ post.ngay_dang|date:'H:i, d/m/Y'}}</small></p>
     </div>
 <div class="d-flex justify-content-center">
     {% if post.hinh_dai_dien %}
@@ -35,18 +35,18 @@
 {% endfor %}
 <hr>
 {% if not comments %}
-<h3>Bình luận</h3>
+<h3>Bình luận <i class="fa fa-comment-o" aria-hidden="true">&nbsp;</i></h3>
 <p>Chưa có bình luận</p>
 {% else %}
 <div class="col-md-8 card mb-4  mt-3 ">
       <div class="card-body">
-        <h3>{{ comment.count }} Bình luận</h3>
+        <h3>{{ comment.count }} Bình luận <i class="fa fa-comment-o" aria-hidden="true">&nbsp;</i></i></h3>
         {% for comment in comments %}
         <div class="comments" style="padding: 10px;">
           <p class="font-weight-bold">
             {{ comment.ten }}&emsp;
             <span class=" text-muted font-weight-normal">
-              {{ comment.ngay_dang|date:'H:i, d/m/Y' }}
+              <small>{{ comment.ngay_dang|date:'H:i, d/m/Y' }}</small>
             </span>
           </p>
           {{ comment.noi_dung |safe | linebreaks }}
@@ -61,7 +61,7 @@
 <form method="POST">
     {% csrf_token %}
     {{comment_form.as_p}}
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Đăng</button>
 </form>
 {% else %}
 <div class="d-flex align-items-center">

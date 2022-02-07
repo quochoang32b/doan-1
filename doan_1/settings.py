@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['doan1-quochoang.herokuapp.com','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -163,7 +164,7 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'Home'
-LOGOUT_REDIRECT_URL = 'Home'
+#LOGOUT_REDIRECT_URL = 'Home'
 
 django_heroku.settings(locals())
 
@@ -180,3 +181,5 @@ TINYMCE_DEFAULT_CONFIG = {
     "alignright alignjustify | bullist numlist outdent indent | "
     "removeformat | help",
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

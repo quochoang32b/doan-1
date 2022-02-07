@@ -16,6 +16,8 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-ngay_dang']
+        verbose_name = 'Tin tức'
+        verbose_name_plural = 'Tin tức'
 
     def __str__(self):
         return self.tieu_de
@@ -27,6 +29,11 @@ class DoiBong(models.Model):
     ma_doi_bong = models.CharField(max_length=50, blank=True, null=True, unique=True, verbose_name='Mã đội bóng')
     ten_doi_bong = models.CharField(max_length=50, verbose_name='Tên đội bóng')
     logo = models.ImageField(null=True, blank=True, upload_to='images/', verbose_name='Logo đội bóng')
+
+    class Meta:
+        verbose_name = 'Đội bóng'
+        verbose_name_plural = 'Đội bóng'
+
     def __str__(self):
         return self.ten_doi_bong
 
@@ -42,9 +49,13 @@ class TranDau(models.Model):
     pham_loi = HTMLField(default="TBD", verbose_name='Phạm lỗi')
     chien_thuat = models.ImageField(null=True, blank=True, upload_to='images/', verbose_name='Chiến thuật')
 
+    class Meta:
+        ordering = ['-thoi_gian']
+        verbose_name = 'Trận đấu'
+        verbose_name_plural = 'Trận đấu'
 
     def __str__(self):
-        return self.ma_tran_dau
+        return self.giai_dau + ' - ' + self.ma_tran_dau
 
 
 """
@@ -72,8 +83,14 @@ class CauThu(models.Model):
     hinh_dai_dien = models.ImageField(null=True, blank=True, upload_to='images/', verbose_name='Hình đại diện')
     tinh_trang = models.CharField(max_length=50, verbose_name='Tình trạng')
     doi_hinh = models.CharField(max_length=50, default = "Chính thức", verbose_name='Đội hình')
+
+    class Meta:
+        ordering = ['-doi_bong']
+        verbose_name = 'Cầu thủ'
+        verbose_name_plural = 'Cầu thủ'
+
     def __str__(self):
-        return self.ho + ' ' + self.ten
+        return self.ho + ' ' + self.ten + ' - ' + self.doi_bong.ten_doi_bong
 
 
 class Comment(models.Model):
@@ -82,6 +99,10 @@ class Comment(models.Model):
     noi_dung = HTMLField(verbose_name='Nội dung')
     ngay_dang = models.DateTimeField(auto_now_add=True, verbose_name='Ngày đăng')
 
+    class Meta:
+        verbose_name = 'Bình luận'
+        verbose_name_plural = 'Bình luận'
+
     def __str__(self):
-        return '%s - %s' % (self.post.tieu_de, self.ten)
+        return '%s - %s - %s' % (self.post.tieu_de, self.ten, self.noi_dung)
 
