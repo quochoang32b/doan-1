@@ -90,7 +90,7 @@ class CauThu(models.Model):
         verbose_name_plural = 'Cầu thủ'
 
     def __str__(self):
-        return self.ho + ' ' + self.ten + ' - ' + self.doi_bong.ten_doi_bong
+        return self.ho + ' ' + self.ten + ' - ' + self.vi_tri + ' - ' + self.doi_hinh + ' - ' + self.doi_bong.ten_doi_bong
 
 
 class Comment(models.Model):

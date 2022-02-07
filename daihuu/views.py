@@ -10,7 +10,7 @@ from .forms import CommentForm
  #   return render(request, 'daihuu/home.html')
 
 def HomeView(request):
-    some_post = Post.objects.all().order_by("-ngay_dang")[0:3]
+    some_post = Post.objects.all().order_by("-ngay_dang")[0:6]
     some_match = TranDau.objects.all().order_by("-thoi_gian")
     some_team = DoiBong.objects.all()
     return render(request, 'daihuu/home.html', {'some_post': some_post, 'some_match': some_match,'some_team':some_team})
