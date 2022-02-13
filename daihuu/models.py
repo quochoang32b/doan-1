@@ -71,6 +71,10 @@ class DoiHinh(models.Model):
         return self.ten
 """
 class CauThu(models.Model):
+
+    choice_tinh_trang = [('Sẵn sàng','Sẵn sàng'),('Chấn thương','Chấn thương'),('Đi công tác','Đi công tác')]
+    choice_doi_hinh = [('Chính thức','Chính thức'),('Dự bị','Dự bị')]
+
     doi_bong = models.ForeignKey(DoiBong, null=True, blank=True, on_delete=models.SET_NULL, related_name='cau_thu', verbose_name='Đội bóng')
     ma_cau_thu = models.CharField(max_length=50, blank=True, null=True, unique=True, verbose_name='Mã cầu thủ')
     ho = models.CharField(max_length=50, verbose_name='Họ')
@@ -86,8 +90,8 @@ class CauThu(models.Model):
     so_lan_cuu_thua = models.CharField(max_length=50, verbose_name='Số lần cứu thua')
     tieu_su = models.TextField(verbose_name='Tiểu sử')
     hinh_dai_dien = models.ImageField(null=True, blank=True, upload_to='images/', verbose_name='Hình đại diện')
-    tinh_trang = models.CharField(max_length=50, verbose_name='Tình trạng')
-    doi_hinh = models.CharField(max_length=50, default = "Chính thức", verbose_name='Đội hình')
+    tinh_trang = models.CharField(max_length=50, choices=choice_tinh_trang ,verbose_name='Tình trạng')
+    doi_hinh = models.CharField(max_length=50, default = "Chính thức", choices=choice_doi_hinh, verbose_name='Đội hình')
 
     class Meta:
         ordering = ['-doi_bong']

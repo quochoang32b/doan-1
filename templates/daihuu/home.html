@@ -82,9 +82,9 @@
                           <img class="card-img-top rounded" src="{{ post.hinh_dai_dien.url }}" onerror="this.onerror=null; this.src='{% static 'images/default_thumb.jpg' %}'" width="500px" height="200px" alt="Card image cap">
                         {% endif %}
                           <div class="card-body">
-                            <h5 class="card-title" style="min-height: 100px">{{ post.tieu_de }}</h5>
+                            <h5 class="card-title">{{ post.tieu_de }}</h5>
                             <div class="d-flex justify-content-between">
-                                    <p><small class="text-muted">{{post.the_loai}}</small></p>
+                                    <p><small class="text-muted">Thể loại: {{post.the_loai}}</small></p>
                                     <p><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i><small class="text-muted">{{post.ngay_dang|date:'H:i, d/m/Y'}}</small></p>
                             </div>
                           </div>
@@ -107,9 +107,9 @@
                           <img class="card-img-top rounded" src="{{ post.hinh_dai_dien.url }}" onerror="this.onerror=null; this.src='{% static 'images/default_thumb.jpg' %}'" width="500px" height="200px" alt="Card image cap">
                         {% endif %}
                           <div class="card-body">
-                            <h5 class="card-title" style="min-height: 100px">{{ post.tieu_de }}</h5>
+                            <h5 class="card-title">{{ post.tieu_de }}</h5>
                             <div class="d-flex justify-content-between">
-                                    <p><small class="text-muted">{{post.the_loai}}</small></p>
+                                    <p><small class="text-muted">Thể loại: {{post.the_loai}}</small></p>
                                     <p><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i><small class="text-muted">{{post.ngay_dang|date:'H:i, d/m/Y'}}</small></p>
                             </div>
                           </div>
