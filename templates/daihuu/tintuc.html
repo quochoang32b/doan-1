@@ -2,7 +2,7 @@
 {% block content %}
 {%load static%}
     <div class="d-flex flex-wrap">
-                {% for post in object_list %}
+                {% for post in some_post %}
                       <div class="bg-image hover-zoom" style="margin-right: 10px;">
                           <a href="{% url 'PostDetail' post.pk %}" style="text-decoration: none; color: black">
                           <div class="card" style="width: 400px;padding-top:50px;">
@@ -10,10 +10,13 @@
                             <img class="card-img-top"src="{{ post.hinh_dai_dien.url }}" onerror="this.onerror=null; this.src='{% static 'images/default_thumb.jpg' %}'" height="200px" alt="Card image cap">
                             {% endif %}
                                 <div class="card-body">
-                                  <h5 class="card-title me-auto" style="font-size:23px;">{{ post.tieu_de }}</h5>
+                                  <h5 class="card-title me-auto" style="font-size:23px; min-height:100px">{{ post.tieu_de }}</h5>
                                   <div class="d-flex justify-content-between">
                                     <p><small class="text-muted">Người đăng: {{ post.tac_gia }}</small></p>
                                     <p><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i><small class="text-muted">{{post.ngay_dang|date:'H:i, d/m/Y'}}</small></p>
+                                  </div>
+                                  <div class="d-flex justify-content-start">
+                                    <p><small class="text-muted">{{ post.the_loai }}</small></p>
                                   </div>
                                   <p class="card-text">{{post.noi_dung|truncatewords_html:15|safe}}</p>
                                 </div>

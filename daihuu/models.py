@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 
 class Post(models.Model):
+
+    lua_chon = [('Đại Hữu FC','Đại Hữu FC'),('Bóng đá trong nước','Bóng đá trong nước'),('Bóng đá quốc tế','Bóng đá quốc tế'),('Y tế','Y tế'),('Giáo dục','Giáo dục'),('Kết nối doanh nghiệp','Kết nối doanh nghiệp')]
+
     ma_post = models.CharField(max_length=50, blank=True, null=True, unique=True, verbose_name='Mã post')
     tieu_de = models.CharField(max_length=200, unique=True, verbose_name='Tiêu đề')
     tac_gia = models.ForeignKey(User, verbose_name='Tác giả', on_delete=models.CASCADE)
@@ -10,6 +13,7 @@ class Post(models.Model):
     hinh_dai_dien = models.ImageField(null=True, blank=True, upload_to='images/', verbose_name='Hình đại diện')
     ngay_dang = models.DateTimeField(auto_now_add=True, verbose_name='Ngày đăng')
     likes = models.ManyToManyField(User, null=True, blank=True, related_name='post_like', verbose_name='Người like')
+    the_loai = models.CharField(max_length=100, default='Đại Hữu FC', choices = lua_chon, verbose_name='Thể loại')
 
     def number_of_likes(self):
         return self.likes.count()
@@ -24,6 +28,7 @@ class Post(models.Model):
 
     #def get_absolute_url(self):
      #   return reverse('PostDetail', args=(str(self.id)))
+
 
 class DoiBong(models.Model):
     ma_doi_bong = models.CharField(max_length=50, blank=True, null=True, unique=True, verbose_name='Mã đội bóng')

@@ -10,15 +10,23 @@ from .forms import CommentForm
  #   return render(request, 'daihuu/home.html')
 
 def HomeView(request):
-    some_post = Post.objects.all().order_by("-ngay_dang")[0:6]
+    tin_tuc = Post.objects.exclude(the_loai__in = ["Y tế","Giáo dục","Kết nối doanh nghiệp"]).order_by("-ngay_dang")[0:6]
+    hoat_dong = Post.objects.exclude(the_loai__in = ["Đại Hữu FC","Bóng đá trong nước","Bóng đá quốc tế"]).order_by("-ngay_dang")[0:6]
     some_match = TranDau.objects.all().order_by("-thoi_gian")
     some_team = DoiBong.objects.all()
-    return render(request, 'daihuu/home.html', {'some_post': some_post, 'some_match': some_match,'some_team':some_team})
+    return render(request, 'daihuu/home.html', {'tin_tuc': tin_tuc,'hoat_dong':hoat_dong,'some_match': some_match,'some_team':some_team})
 
-class TinTucView(ListView):
-    model = Post
-    template_name = "daihuu/tintuc.html"
-    context_object_name = 'posts'
+def TinTucView(request):
+    some_post = Post.objects.exclude(the_loai__in = ["Y tế","Giáo dục","Kết nối doanh nghiệp"]).order_by("-ngay_dang")
+    return render(request, 'daihuu/tintuc.html', {'some_post': some_post})
+
+def TinTucTheLoaiView(request, tl):
+    some_post = Post.objects.filter(the_loai = tl)
+    return render(request, 'daihuu/tintuc.html', {'some_post': some_post})
+
+def HoatDongView(request):
+    some_post = Post.objects.exclude(the_loai__in = ["Đại Hữu FC","Bóng đá trong nước","Bóng đá quốc tế"]).order_by("-ngay_dang")
+    return render(request, 'daihuu/tintuc.html', {'some_post': some_post})
 
 def PostDetailView(request, pk):
     some_post_detail = Post.objects.filter(id = pk)

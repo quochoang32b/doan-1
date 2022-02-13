@@ -55,8 +55,29 @@
         <li class="nav-item" style="margin-right:10px;">
           <a class="nav-link" href="{% url 'ThongTin' %}">THÔNG TIN <i class="fa fa-info-circle" aria-hidden="true"></i></a>
         </li>
-        <li class="nav-item" style="margin-right:10px;">
-          <a class="nav-link" href="{% url 'TinTuc' %}">TIN TỨC <i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
+        <li class="nav-item dropdown" style="margin-right:10px;">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            TIN TỨC <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown"  style="background-color: #291061;">
+            <li><a class="dropdown-item" href="{% url 'TinTucTheLoai' 'Đại Hữu FC' %}">ĐẠI HỮU FC</a></li>
+            <li><a class="dropdown-item" href="{% url 'TinTucTheLoai' 'Bóng đá trong nước' %}">BÓNG ĐÁ TRONG NƯỚC</a></li>
+            <li><a class="dropdown-item" href="{% url 'TinTucTheLoai' 'Bóng đá quốc tế' %}">BÓNG ĐÁ QUỐC TẾ</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'TinTuc' %}">TẤT CẢ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown" style="margin-right:10px;">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            HOẠT ĐỘNG CỘNG ĐỒNG <i class="fa fa-handshake-o" aria-hidden="true"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown"  style="background-color: #291061;">
+            <li><a class="dropdown-item" href="{% url 'TinTucTheLoai' 'Y tế' %}">Y TẾ</a></li>
+            <li><a class="dropdown-item" href="{% url 'TinTucTheLoai' 'Giáo dục' %}">GIÁO DỤC</a></li>
+            <li><a class="dropdown-item" href="{% url 'TinTucTheLoai' 'Kết nối doanh nghiệp' %}">KẾT NỐI DOANH NGHIỆP</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'HoatDong' %}">TẤT CẢ</a></li>
+          </ul>
         </li>
           <li class="nav-item dropdown" style="margin-right:10px;">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

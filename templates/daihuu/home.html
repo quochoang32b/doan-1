@@ -36,7 +36,7 @@
 </div>
 {% endblock %}
                 {% block content %}
-                <h2 style="text-align:center;font-weight: bold; color:#291061;">LỊCH THI ĐẤU</h2>
+                <h2 style="text-align:center;font-weight: bold;">LỊCH THI ĐẤU <i class="fa fa-calendar" aria-hidden="true"></i></h2>
                 <div class="d-flex justify-content-center">
                     <table class="table table-borderless table-responsive" style="width:70%; border: green 8px solid; background-color: #291061;color: white;">
                           <tbody>
@@ -70,11 +70,11 @@
                         </table>
                 </div>
                  <div class="d-flex justify-content-center">
-                    <a href="{% url 'LichThiDau' %}" class="ml-auto btn btn-primary active" role="button">XEM THÊM</a>
+                    <a href="{% url 'LichThiDau' %}" class="ml-auto btn btn-primary active" role="button">XEM THÊM TRẬN ĐẤU</a>
                 </div>
-            <h2 style="text-align: center; font-weight: bold; padding-top: 70px; color:#291061">TIN TỨC MỚI</h2>
+            <h2 style="text-align: center; font-weight: bold; padding-top: 100px;">TIN TỨC MỚI <i class="fa fa-newspaper-o" aria-hidden="true"></i></h2>
             <div class="d-flex flex-wrap">
-                {% for post in some_post %}
+                {% for post in tin_tuc %}
                     <div class="bg-image hover-zoom mx-1">
                     <a href="{% url 'PostDetail' post.pk %}" style="text-decoration: white; margin-right: 20px;" class="link-dark">
                     <div class="card" style="width: 25rem;">
@@ -82,8 +82,9 @@
                           <img class="card-img-top rounded" src="{{ post.hinh_dai_dien.url }}" onerror="this.onerror=null; this.src='{% static 'images/default_thumb.jpg' %}'" width="500px" height="200px" alt="Card image cap">
                         {% endif %}
                           <div class="card-body">
-                            <h5 class="card-title">{{ post.tieu_de }}</h5>
-                            <div class="d-flex justify-content-end">
+                            <h5 class="card-title" style="min-height: 100px">{{ post.tieu_de }}</h5>
+                            <div class="d-flex justify-content-between">
+                                    <p><small class="text-muted">{{post.the_loai}}</small></p>
                                     <p><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i><small class="text-muted">{{post.ngay_dang|date:'H:i, d/m/Y'}}</small></p>
                             </div>
                           </div>
@@ -93,7 +94,32 @@
                 {% endfor %}
             </div>
                 <div class="d-flex justify-content-center">
-                    <a href="{% url 'TinTuc' %}" class="ml-auto btn btn-primary active" role="button">XEM THÊM</a>
+                    <a href="{% url 'TinTuc' %}" class="ml-auto btn btn-primary btn-success btn-sm active" role="button">XEM THÊM TIN TỨC</a>
+                </div>
+
+            <h2 style="text-align: center; font-weight: bold; padding-top: 50px;">HOẠT ĐỘNG CỘNG ĐỒNG MỚI <i class="fa fa-handshake-o" aria-hidden="true"></i></h2>
+            <div class="d-flex flex-wrap">
+                {% for post in hoat_dong %}
+                    <div class="bg-image hover-zoom mx-1">
+                    <a href="{% url 'PostDetail' post.pk %}" style="text-decoration: white; margin-right: 20px;" class="link-dark">
+                    <div class="card" style="width: 25rem;">
+                        {% if post.hinh_dai_dien %}
+                          <img class="card-img-top rounded" src="{{ post.hinh_dai_dien.url }}" onerror="this.onerror=null; this.src='{% static 'images/default_thumb.jpg' %}'" width="500px" height="200px" alt="Card image cap">
+                        {% endif %}
+                          <div class="card-body">
+                            <h5 class="card-title" style="min-height: 100px">{{ post.tieu_de }}</h5>
+                            <div class="d-flex justify-content-between">
+                                    <p><small class="text-muted">{{post.the_loai}}</small></p>
+                                    <p><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i><small class="text-muted">{{post.ngay_dang|date:'H:i, d/m/Y'}}</small></p>
+                            </div>
+                          </div>
+                    </div>
+                    </a>
+                    </div>
+                {% endfor %}
+            </div>
+                <div class="d-flex justify-content-center">
+                    <a href="{% url 'HoatDong' %}" class="ml-auto btn btn-success btn-sm active" role="button">XEM THÊM HOẠT ĐỘNG</a>
                 </div>
                        
 
