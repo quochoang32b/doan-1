@@ -9,7 +9,7 @@ class CommentInline(admin.StackedInline):
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('tieu_de','the_loai','tac_gia','ngay_dang')
+    list_display = ('ma_post','tieu_de','the_loai','tac_gia','ngay_dang')
     search_fields = ['tieu_de', 'noi_dung']
     inlines = [
         CommentInline,
@@ -25,7 +25,7 @@ class DoiBongAdmin(admin.ModelAdmin):
     ]
 
 class TranDauAdmin(admin.ModelAdmin):
-    list_display = ('giai_dau', 'ma_tran_dau','thoi_gian')
+    list_display = ('ma_tran_dau','giai_dau','thoi_gian')
     search_fields = ['giai_dau', 'ma_tran_dau', 'doi_bong__ten_doi_bong']
 
 class CauThuAdmin(admin.ModelAdmin):

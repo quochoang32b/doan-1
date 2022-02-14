@@ -94,12 +94,12 @@ class CauThu(models.Model):
     doi_hinh = models.CharField(max_length=50, default = "Chính thức", choices=choice_doi_hinh, verbose_name='Đội hình')
 
     class Meta:
-        ordering = ['-doi_bong']
+        ordering = ['-ma_cau_thu']
         verbose_name = 'Cầu thủ'
         verbose_name_plural = 'Cầu thủ'
 
     def __str__(self):
-        return self.ho + ' ' + self.ten + ' - ' + self.vi_tri + ' - ' + self.doi_hinh + ' - ' + self.doi_bong.ten_doi_bong
+        return  self.ho + ' ' + self.ten + ' - ' + self.vi_tri + ' - ' + self.doi_hinh + ' - ' + self.doi_bong.ten_doi_bong + '-' + self.ma_cau_thu
 
 
 class Comment(models.Model):
