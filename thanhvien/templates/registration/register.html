@@ -2,11 +2,12 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% if form.errors %}
-<div class="alert alert-danger" role="alert" style="width:700px;">
+<div class="alert alert-danger container alert-dismissible fade show" role="alert" style="max-width:650px;">
   Lỗi đăng ký, xin hãy sửa lại thông tin !
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {% endif %}
-<div class="container" style="margin: 0; max-width: 700px;">
+<div class="container" style="max-width: 700px;">
     <h1 style="font-weight:bold;">Đăng ký tài khoản</h1>
     <div class="form-group">
     <form method="POST">

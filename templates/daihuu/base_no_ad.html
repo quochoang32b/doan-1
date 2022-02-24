@@ -6,16 +6,27 @@
         font-family: 'Merriweather', serif;
     }
     table tr td{
-      font-size: 16px;
+      font-size: 18px;
+      font-family: Roboto, serif;
     }
     label{
       margin-top: 10px;
       margin-bottom: 5px;
-      font-weight: bold;
-      color: darkblue;
+      font-size: larger;
+      font-family: Roboto, serif;
     }
     .asteriskField {
     display: none;
+    }
+    nav ul li a {
+      font-weight: 800;
+      font-family: Roboto, serif;
+      font-size: large;
+    }
+    .match_detail p{
+      font-size: large;
+      font-family: Roboto, serif;
+      text-align: center;
     }
 </style>
   <head>
@@ -37,9 +48,9 @@
   <body>
   <nav class="d-flex flex-row navbar navbar-dark" style="background-color: yellow; height:80px">
     <div class="col-1"></div>
-    <div class="col-11" style="padding-top:10px"><a href="/" style="text-decoration:none"><h1 style="font-weight:bold; color:#291061;">ĐẠI HỮU F.C</h1></a></div>
+    <div class="col-11" style="padding-top:10px"><a href="/" style="text-decoration:none"><h1 style="font-weight:800; color:#291061;">ĐẠI HỮU FC</h1></a></div>
   </nav>
-  <nav class="navbar navbar-expand-lg navbar-dark py-2" style="background-color: #291061;">
+  <nav class="navbar navbar-expand-lg navbar-dark py-2 stroke" style="background-color: #291061;">
   <div class="container-fluid">
     <a class="navbar-brand bg-image hover-zoom" href="/" style="padding-left: 10px;">
         <img  class="rounded-circle" src="{% static 'images/brand.jpg'%}" width="50" height="50">
@@ -50,14 +61,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item" style="margin-right:10px;">
-          <a class="nav-link" href="/" >TRANG CHỦ <i class="fa fa-home" aria-hidden="true"></i></a>
+          <a class="nav-link" href="/">TRANG CHỦ <i class="fa fa-home" aria-hidden="true"></i></a>
         </li>
         <li class="nav-item" style="margin-right:10px;">
           <a class="nav-link" href="{% url 'ThongTin' %}">THÔNG TIN <i class="fa fa-info-circle" aria-hidden="true"></i></a>
         </li>
         <li class="nav-item dropdown" style="margin-right:10px;">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            TIN TỨC <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+            TIN TỨC BÓNG ĐÁ <i class="fa fa-newspaper-o" aria-hidden="true"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown"  style="background-color: #291061;">
             <li><a class="dropdown-item" href="{% url 'TinTucTheLoai' 'Đại Hữu FC' %}">ĐẠI HỮU FC</a></li>
@@ -96,16 +107,18 @@
       </ul>
       <ul class="navbar-nav ms-auto">
             {% if user.is_authenticated %}
-                <li class="nav-item" style="margin-right:10px;">
-                <a class="nav-link text-light" href="#">Xin chào, {{user.username|default:'Guest' }} <i class="fa fa-user" aria-hidden="true"></i></a>
-                </li>
-                {% if user.is_staff %}
-                <li class="nav-item" style="margin-right:10px;">
-                <a class="nav-link" href="https://doan1-quochoang.herokuapp.com/admin">Trang Admin <i class="fa fa-sign-in" aria-hidden="true"></i></a>
-                </li>
-                {% endif %}
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}?next={{request.path}}">ĐĂNG XUẤT <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                <li class="nav-item dropdown" style="margin-right:10px;">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    XIN CHÀO, {{user.username|default:'Guest' }} <i class="fa fa-user" aria-hidden="true"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown"  style="background-color: #291061;">
+                    {% if user.is_staff %}
+                    <li><a class="dropdown-item" href="https://doan1-quochoang.herokuapp.com/admin">TRANG ADMIN <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    {% endif %}
+                    <li><a class="dropdown-item" href="{% url 'edit_profile' %}?next={{request.path}}">SỬA THÔNG TIN <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">ĐĂNG XUẤT <i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                  </ul>
                 </li>
             {% else %}
             <li class="nav-item" style="margin-right:10px;">
@@ -124,7 +137,7 @@
 
 {%endblock%}
 
-  <div class="container-fluid" style="padding-top:30px; min-height:800px">
+  <div class="container-fluid" style="padding-top:30px; min-height:300px">
         <div class="row">
             <div class="col-lg-2">
 

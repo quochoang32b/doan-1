@@ -72,7 +72,7 @@ class DoiHinh(models.Model):
 """
 class CauThu(models.Model):
 
-    choice_tinh_trang = [('Sẵn sàng','Sẵn sàng'),('Chấn thương','Chấn thương'),('Đi công tác','Đi công tác')]
+    choice_tinh_trang = [('Sẵn sàng','Sẵn sàng'),('Chấn thương','Chấn thương'),('Treo giò','Treo giò'),('Đi công tác','Đi công tác'),('Khác','Khác')]
     choice_doi_hinh = [('Chính thức','Chính thức'),('Dự bị','Dự bị')]
 
     doi_bong = models.ForeignKey(DoiBong, null=True, blank=True, on_delete=models.SET_NULL, related_name='cau_thu', verbose_name='Đội bóng')
@@ -94,12 +94,12 @@ class CauThu(models.Model):
     doi_hinh = models.CharField(max_length=50, default = "Chính thức", choices=choice_doi_hinh, verbose_name='Đội hình')
 
     class Meta:
-        ordering = ['-ma_cau_thu']
+        ordering = ['vi_tri','doi_hinh','-ma_cau_thu']
         verbose_name = 'Cầu thủ'
         verbose_name_plural = 'Cầu thủ'
 
     def __str__(self):
-        return  self.ho + ' ' + self.ten + ' - ' + self.vi_tri + ' - ' + self.doi_hinh + ' - ' + self.doi_bong.ten_doi_bong + '-' + self.ma_cau_thu
+        return  self.ho + ' ' + self.ten + ' - ' + self.vi_tri + ' - ' + self.doi_hinh + ' - ' + self.doi_bong.ten_doi_bong + '- Mã cầu thủ: ' + self.ma_cau_thu
 
 
 class Comment(models.Model):
@@ -113,5 +113,5 @@ class Comment(models.Model):
         verbose_name_plural = 'Bình luận'
 
     def __str__(self):
-        return '%s - %s - %s' % (self.post.tieu_de, self.ten, self.noi_dung)
+        return '%s - %s' % (self.post.tieu_de, self.ten)
 
