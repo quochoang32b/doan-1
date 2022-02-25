@@ -2,7 +2,7 @@
 {%load static%}
 {% block content %}
 <div class="match_detail">
-<h2 style="text-align:center; font-weight:bold;">CHI TIẾT TRẬN ĐẤU</h2>
+<h1 style="text-align:center"><strong>Chi tiết trận đấu</strong></h1>
 <br>
 <div class="row" style="padding-bottom:20px;">
   <div class="col-lg-4">
@@ -24,10 +24,12 @@
         </table>
   </div>
   <div class="col-lg-4">
-  <div style="padding-bottom: 20px;">
-      <h5 style="text-align:center"><strong>Chiến thuật Đại Hữu</strong></h5>
+  <div class="bg-image hover-zoom" style="padding-bottom: 20px;">
+      <h5 style="text-align:center; padding-bottom: 10px;"><strong>Chiến thuật Đại Hữu</strong></h5>
       {% if some_match_thi_dau.first.chien_thuat %}
       <img class="img-fluid" src="{{some_match_thi_dau.first.chien_thuat.url}}" style="width: 400px; height: 400px;">
+      {% else %}
+      <img class="img-fluid" src="https://res.cloudinary.com/hzay5ix3o/image/upload/v1645791124/media/images/daihuu/lineup/TBD_y99d1a.png" style="width: 400px; height: 400px;">
       {% endif %}
   </div>
   </div>
@@ -50,22 +52,29 @@
         </table>
   </div>
 </div>
+<hr>
 <div class="row">
-<div class="col-lg-4" style="padding-bottom:20px; border-right: 1px solid black;">
-  <h5 style="text-align:center;"><strong>Tỉ số</strong></h5>
-  <p style="text-align:center; border-bottom:  1px solid black;">{{some_match_thi_dau.first.doi_bong.all.first}}&emsp;{{ some_match_thi_dau.first.diem_so }}&emsp;{{some_match_thi_dau.first.doi_bong.all.last}}</p>
-  <br>
+<div class="col-lg-4" style="padding-bottom:20px; border-right: 1px solid #000;">
   <h5 style="text-align:center;"><strong>Giải đấu</strong></h5>
-  <p style="text-align:center; border-bottom:  1px solid black;">{{ some_match_thi_dau.first.giai_dau}}</p>
-  <br>
-  <h5 style="text-align:center;"><strong>Trọng tài</strong></h5>
-  <p style="text-align:center; border-bottom:  1px solid black;">{{ some_match_thi_dau.first.trong_tai}}</p>
+  <p style="text-align:center;">{{ some_match_thi_dau.first.giai_dau}}</p>
+  <hr>
+  <h5 style="text-align:center;"><strong>Địa điểm</strong></h5>
+  <p style="text-align:center;">{{ some_match_thi_dau.first.dia_diem}}</p>
+  <hr>
+  <h5 style="text-align:center;"><strong>Thời gian</strong></h5>
+  <p style="text-align:center;">{{ some_match_thi_dau.first.thoi_gian|date:'d/m/Y - H:i'}}</p>
 </div>
-<div class="col-lg-4" style="border-right: 1px solid black;">    
+<div class="col-lg-4" style="border-right: 1px solid black;">
+  <h5 style="text-align:center;"><strong>Tỉ số</strong></h5>
+  <p style="text-align:center;">{{some_match_thi_dau.first.doi_bong.all.first}}&emsp;{{ some_match_thi_dau.first.diem_so }}&emsp;{{some_match_thi_dau.first.doi_bong.all.last}}</p>
+  <hr>
   <h5 style="text-align:center;"><strong>Bàn thắng</strong></h5>
   <p>{{ some_match_thi_dau.first.ban_thang|safe}}</p>
 </div>
 <div class="col-lg-4">
+  <h5 style="text-align:center;"><strong>Trọng tài</strong></h5>
+  <p style="text-align:center;">{{ some_match_thi_dau.first.trong_tai}}</p>
+  <hr>
   <h5 style="text-align:center"><strong>Phạm lỗi</strong></h5>
   <p>{{ some_match_thi_dau.first.pham_loi|safe}}</p>
 </div>

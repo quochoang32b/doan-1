@@ -74,6 +74,7 @@ class CauThu(models.Model):
 
     choice_tinh_trang = [('Sẵn sàng','Sẵn sàng'),('Chấn thương','Chấn thương'),('Treo giò','Treo giò'),('Đi công tác','Đi công tác'),('Khác','Khác')]
     choice_doi_hinh = [('Chính thức','Chính thức'),('Dự bị','Dự bị')]
+    choice_vi_tri = [('Thủ môn','Thủ môn'),('Hậu vệ','Hậu vệ'),('Tiền vệ','Tiền vệ'),('Tiền đạo','Tiền đạo')]
 
     doi_bong = models.ForeignKey(DoiBong, null=True, blank=True, on_delete=models.SET_NULL, related_name='cau_thu', verbose_name='Đội bóng')
     ma_cau_thu = models.CharField(max_length=50, blank=True, null=True, unique=True, verbose_name='Mã cầu thủ')
@@ -84,7 +85,7 @@ class CauThu(models.Model):
     chieu_cao = models.CharField(max_length=50, verbose_name='Chiều cao')
     can_nang = models.CharField(max_length=50, verbose_name='Cân nặng')
     so_ao = models.CharField(max_length=50, verbose_name='Số áo')
-    vi_tri = models.CharField(max_length=50, verbose_name='Vị trí')
+    vi_tri = models.CharField(max_length=50, choices=choice_vi_tri, verbose_name='Vị trí')
     so_tran = models.CharField(max_length=50, verbose_name='Số trận')
     so_ban_thang = models.CharField(max_length=50, verbose_name='Số bàn thắng')
     so_lan_cuu_thua = models.CharField(max_length=50, verbose_name='Số lần cứu thua')
