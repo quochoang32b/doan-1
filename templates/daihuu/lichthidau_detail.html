@@ -2,8 +2,6 @@
 {%load static%}
 {% block content %}
 <div class="match_detail">
-<h1 style="text-align:center"><strong>Chi tiết trận đấu</strong></h1>
-<br>
 <div class="row" style="padding-bottom:20px;">
   <div class="col-lg-4">
     {% if some_match_thi_dau.first.doi_bong.all.first.logo %}
@@ -24,8 +22,8 @@
         </table>
   </div>
   <div class="col-lg-4">
-  <div class="bg-image hover-zoom" style="padding-bottom: 20px;">
-      <h5 style="text-align:center; padding-bottom: 10px;"><strong>Chiến thuật Đại Hữu</strong></h5>
+  <div class="bg-image hover-zoom" style="padding-bottom: 20px; padding-top:140px;">
+      <h5 style="text-align:center; padding-bottom:20px;"><strong>Chiến thuật Đại Hữu</strong></h5>
       {% if some_match_thi_dau.first.chien_thuat %}
       <img class="img-fluid" src="{{some_match_thi_dau.first.chien_thuat.url}}" style="width: 400px; height: 400px;">
       {% else %}
